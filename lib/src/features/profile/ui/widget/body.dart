@@ -99,9 +99,57 @@ class ProfileBodyWidget extends StatelessWidget {
         const SizedBox(height: 24),
         Row(
           children: const [
-            Flexible(child: AppDropDownButton()),
+            Flexible(
+                child: AppDropDownButton(
+              items: [
+                DropdownMenuItem(
+                  value: 'Almaty',
+                  child: Text(
+                    'Almaty',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
+                  ),
+                ),
+                DropdownMenuItem(
+                  value: 'almaty',
+                  child: Text(
+                    'Almaty',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
+                  ),
+                ),
+              ], initial: 'Almaty',
+            )),
             SizedBox(width: 23),
-            Flexible(child: AppDropDownButton()),
+            Flexible(
+                child: AppDropDownButton(
+              items: [
+                DropdownMenuItem(
+                  value: 'Almaty',
+                  child: Text(
+                    'Almaty',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
+                  ),
+                ),
+                DropdownMenuItem(
+                  value: 'almaty',
+                  child: Text(
+                    'Almaty',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black45,
+                    ),
+                  ),
+                ),
+              ], initial: 'Almaty',
+            )),
           ],
         ),
         const SizedBox(height: 28),

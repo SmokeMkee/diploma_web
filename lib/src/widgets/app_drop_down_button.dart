@@ -6,8 +6,9 @@ import '../../constants/app_colors.dart';
 import '../../constants/app_styles.dart';
 
 class AppDropDownButton extends StatefulWidget {
-  const AppDropDownButton({Key? key}) : super(key: key);
-
+  const AppDropDownButton({Key? key, required this.items, required this.initial}) : super(key: key);
+  final List<DropdownMenuItem> items;
+  final String initial;
   @override
   State<AppDropDownButton> createState() => _AppDropDownButtonState();
 }
@@ -31,34 +32,13 @@ class _AppDropDownButtonState extends State<AppDropDownButton> {
           ),
           isExpanded: true,
           hint: Text(
-            'Almaty',
+            widget.initial,
             style: AppStyles.s15w400.copyWith(
               color: AppColors.gray400,
             ),
           ),
           value: categoryValue,
-          items: const [
-            DropdownMenuItem(
-              value: 'Almaty',
-              child: Text(
-                'Almaty',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black45,
-                ),
-              ),
-            ),
-            DropdownMenuItem(
-              value: 'almaty',
-              child: Text(
-                'Almaty',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black45,
-                ),
-              ),
-            ),
-          ],
+          items: widget.items,
           onChanged: (val) {
             setState(
               () {

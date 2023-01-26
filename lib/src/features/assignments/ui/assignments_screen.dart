@@ -25,7 +25,32 @@ class AssignmentsScreen extends StatelessWidget {
             const SizedBox(width: 50),
             Row(
               children: const [
-                SizedBox(width: 350, child: AppDropDownButton()),
+                SizedBox(
+                    width: 350,
+                    child: AppDropDownButton(
+                      items: [
+                        DropdownMenuItem(
+                          value: 'Almaty',
+                          child: Text(
+                            'Almaty',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.black45,
+                            ),
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 'almaty',
+                          child: Text(
+                            'Almaty',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.black45,
+                            ),
+                          ),
+                        ),
+                      ], initial: 'Almaty',
+                    )),
                 SizedBox(width: 23),
                 AppFilterButton(),
               ],

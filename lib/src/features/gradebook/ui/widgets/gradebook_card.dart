@@ -12,9 +12,7 @@ class GradeBookCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(6),
       child: Card(
-
         elevation: 5,
-
         margin: const EdgeInsets.symmetric(vertical: 6),
         child: Padding(
           padding: const EdgeInsets.all(25.0),

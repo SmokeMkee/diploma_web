@@ -18,10 +18,11 @@ class CoursesScreen extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
         appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 200),
-            child: HeaderWidget(
-              title: 'Courses',
-            )),
+          preferredSize: Size(double.infinity, 200),
+          child: HeaderWidget(
+            title: 'Courses',
+          ),
+        ),
         backgroundColor: Colors.transparent,
         body: Column(
           children: [

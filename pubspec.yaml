@@ -18,6 +18,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   side_navigation: ^1.0.4
   auto_route: ^5.0.3
+  syncfusion_flutter_datagrid: ^20.4.43
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^1.1.6

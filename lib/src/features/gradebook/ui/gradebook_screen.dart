@@ -48,28 +48,19 @@ class GradeBookScreen extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                   children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemBuilder: (context, int index) {
-                          return GestureDetector(
-                              // onTap: () => Navigator.push(
-                              //       context,
-                              //       MaterialPageRoute(
-                              //         builder: (context) => GradeBookDetailed(),
-                              //       ),
-                              //     ),
-                              child: const GradeBookCard());
-                        },
-                        itemCount: 15,
-                      ),
+                    ListView.builder(
+                      itemBuilder: (context, int index) {
+                        return GestureDetector(
+                          //  onTap: () => context.router.navigate(GradeBookDetailedRoute( )),
+                            child: const GradeBookCard());
+                      },
+                      itemCount: 15,
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemBuilder: (context, int index) {
-                          return const GradeBookCard();
-                        },
-                        itemCount: 15,
-                      ),
+                    ListView.builder(
+                      itemBuilder: (context, int index) {
+                        return const GradeBookCard();
+                      },
+                      itemCount: 15,
                     ),
                   ],
                 ),

@@ -16,10 +16,14 @@ class ProfileScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(preferredSize: Size(double.infinity, 200), child: HeaderWidget(title: 'Profile',)),
+        appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 200),
+          child: HeaderWidget(
+            title: 'Profile',
+          ),
+        ),
         backgroundColor: Colors.transparent,
         body: Row(
-
           children: const [
             Expanded(
               flex: 4,
@@ -39,6 +43,7 @@ class ProfileScreen extends StatelessWidget {
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
   Widget build(BuildContext context) {
     return Row(

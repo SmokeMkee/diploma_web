@@ -41,4 +41,8 @@ class _Svg {
   final String filter = 'assets/svg/filter.svg';
   final String threeDots = 'assets/svg/three_dots.svg';
   final String boldTime = 'assets/svg/bold_time.svg';
+  final String reversedDots = 'assets/svg/dots.svg';
+  final String usa = 'assets/svg/usa.svg';
+  final String kz = 'assets/svg/kazakhstan.svg';
+  final String rus = 'assets/svg/russia.svg';
 }

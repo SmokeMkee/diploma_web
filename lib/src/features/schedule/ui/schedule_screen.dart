@@ -1,3 +1,4 @@
+import 'package:diploma_web/src/features/schedule/ui/widget/schedule_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/app_colors.dart';
@@ -42,7 +43,7 @@ class ScheduleScreen extends StatelessWidget {
                     text: 'Wednesday',
                   ),
                   Tab(
-                    text: 'Thusday',
+                    text: 'Thursday',
                   ),
                   Tab(
                     text: 'Friday',
@@ -55,7 +56,7 @@ class ScheduleScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              Divider(),
+              const Divider(),
               const SizedBox(height: 44),
               const Expanded(
                 child: TabBarView(
@@ -83,6 +84,46 @@ class ScheduleBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const HeaderBody(),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30),
+            child: ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                if (index % 2 == 0) {
+                  return Row(
+                    children: [
+                      Text('${index + 7}:00'),
+                      const SizedBox(width: 30),
+                      const Expanded(child: ScheduleCard()),
+                    ],
+                  );
+                } else {
+                  return Row(
+                    children:  [
+                      Text('${index + 7}:00'),
+                      const SizedBox(width: 30),
+                     // const Divider(thickness: 13,height: 22, color: Colors.purple,),
+                    ],
+                  );
+                }
+              },
+              itemCount: 12,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class HeaderBody extends StatelessWidget {
+  const HeaderBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,12 +148,12 @@ class ScheduleBody extends StatelessWidget {
             Row(
               children: const [
                 CircleAvatar(
-                  radius: 10,
+                  radius: 5,
                   backgroundColor: AppColors.error,
                 ),
                 SizedBox(width: 9),
                 Text(
-                  'Present',
+                  'Absent',
                   style: AppStyles.s15w500,
                 )
               ],
@@ -121,8 +162,8 @@ class ScheduleBody extends StatelessWidget {
             Row(
               children: const [
                 CircleAvatar(
-                  radius: 10,
-                  backgroundColor: AppColors.error,
+                  radius: 5,
+                  backgroundColor: AppColors.success,
                 ),
                 SizedBox(width: 9),
                 Text(
@@ -137,63 +178,3 @@ class ScheduleBody extends StatelessWidget {
     );
   }
 }
-
-
-class HeaderBody extends StatelessWidget {
-  const HeaderBody({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'April 12, 2023',
-              style: AppStyles.s18w500,
-            ),
-            Text(
-              'Wednesday',
-              style: AppStyles.s15w400.copyWith(
-                color: AppColors.gray600,
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Row(
-              children: const [
-                CircleAvatar(
-                  radius: 10,
-                  backgroundColor: AppColors.error,
-                ),
-                SizedBox(width: 9),
-                Text(
-                  'Present',
-                  style: AppStyles.s15w500,
-                )
-              ],
-            ),
-            const SizedBox(width: 42),
-            Row(
-              children: const [
-                CircleAvatar(
-                  radius: 10,
-                  backgroundColor: AppColors.error,
-                ),
-                SizedBox(width: 9),
-                Text(
-                  'Present',
-                  style: AppStyles.s15w500,
-                )
-              ],
-            ),
-          ],
-        )
-      ],
-    );
-  }
-}
-
