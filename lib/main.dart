@@ -8,30 +8,36 @@ import 'package:provider/provider.dart';
 
 final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 final rootNavigatorKey = GlobalKey<NavigatorState>();
-final router = AppRouter();
+
 void main() {
   return runApp(
     DependenciesProvider(
       builder: (context) {
+        return InheritedProvider<AppRouter>(
+          create: (context) => AppRouter(
+           GlobalKey<NavigatorState>(),
+          ),
+          child: ValueListenableBuilder<Locale>(
+            valueListenable: context.read<ILocaleRepo>().locale,
+            builder: (context, locale, _) {
+              return MaterialApp.router(
+                scaffoldMessengerKey: scaffoldMessengerKey,
 
-        return ValueListenableBuilder<Locale>(
-          valueListenable: context.read<ILocaleRepo>().locale,
-          builder: (context, locale, _) {
-            return MaterialApp.router(
-              routerDelegate: router.delegate(),
-              routeInformationParser: router.defaultRouteParser(),
-              title: 'SimpleEducation',
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              debugShowCheckedModeBanner: false,
-              locale: locale,
-              supportedLocales: S.delegate.supportedLocales,
-            );
-          },
+                routerDelegate: context.read<AppRouter>().delegate(),
+                routeInformationParser: context.read<AppRouter>().defaultRouteParser(),
+                title: 'SimpleEducation',
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                debugShowCheckedModeBanner: false,
+                locale: locale,
+                supportedLocales: S.delegate.supportedLocales,
+              );
+            },
+          ),
         );
       },
     ),

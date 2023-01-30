@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_styles.dart';
+import '../../navigation/app_router/app_router.dart';
 import '../../profile/ui/profile_screen.dart';
 
 class GradeBookScreen extends StatelessWidget {
@@ -51,14 +52,18 @@ class GradeBookScreen extends StatelessWidget {
                     ListView.builder(
                       itemBuilder: (context, int index) {
                         return GestureDetector(
-                          //  onTap: () => context.router.navigate(GradeBookDetailedRoute( )),
+                            onTap: () {
+                              context.router.push(const GradeBookDetailedRoute());
+                            },
                             child: const GradeBookCard());
                       },
                       itemCount: 15,
                     ),
                     ListView.builder(
                       itemBuilder: (context, int index) {
-                        return const GradeBookCard();
+                        return GestureDetector(
+                            onTap: () => context.router.navigate(const GradeBookDetailedRoute()),
+                            child: const GradeBookCard());
                       },
                       itemCount: 15,
                     ),

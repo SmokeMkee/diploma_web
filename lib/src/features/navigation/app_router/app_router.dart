@@ -11,11 +11,8 @@ import 'package:diploma_web/src/features/settings/ui/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../gradebook/ui/gradebook_screen.dart';
-import '../navigation.dart';
-
 export 'package:auto_route/auto_route.dart';
 part 'app_router.gr.dart';
-
 @AdaptiveAutoRouter(
   routes: <AutoRoute>[
 
@@ -45,6 +42,7 @@ part 'app_router.gr.dart';
           children: [
             AutoRoute(page: AssignmentsScreen, initial: true),
 
+
           ],
         ),
         AutoRoute(
@@ -53,6 +51,8 @@ part 'app_router.gr.dart';
           children: [
             AutoRoute(page: GradeBookScreen, initial: true),
             AutoRoute(page: GradeBookDetailed,),
+
+
           ],
         ),
         AutoRoute(
@@ -81,9 +81,11 @@ part 'app_router.gr.dart';
   ],
 )
 class AppRouter extends _$AppRouter {
-  // AppRouter({required GlobalKey<NavigatorState> navigatorKey}) {
-  //   rootKey = super.navigatorKey;
-  // }
+  AppRouter([
+    super.navigatorKey,
+  ]) {
+    rootKey = super.navigatorKey;
+  }
 
- // static late final GlobalKey<NavigatorState> rootKey;
+  static late final GlobalKey<NavigatorState> rootKey;
 }

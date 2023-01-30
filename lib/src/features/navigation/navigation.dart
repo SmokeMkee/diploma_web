@@ -1,13 +1,18 @@
-
 import 'package:diploma_web/constants/app_styles.dart';
+import 'package:diploma_web/src/features/assignments/ui/assignments_screen.dart';
+import 'package:diploma_web/src/features/courses/ui/courses_screen.dart';
+import 'package:diploma_web/src/features/gradebook/ui/gradebook_screen.dart';
 import 'package:diploma_web/src/features/navigation/widgets/log_out_widget.dart';
+import 'package:diploma_web/src/features/saved/ui/saved_screen.dart';
+import 'package:diploma_web/src/features/schedule/ui/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../constants/app_assets.dart';
 import '../../../constants/app_colors.dart';
 import '../localization/generated/l10n.dart';
-import 'app_router/app_router.dart';
+import '../profile/ui/profile_screen.dart';
+import '../settings/ui/settings_screen.dart';
 
 class Navigation extends StatelessWidget {
   const Navigation({Key? key, required this.switchTo, required this.current}) : super(key: key);
@@ -17,7 +22,6 @@ class Navigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Row(
       children: [
         NavigationRail(
@@ -28,115 +32,157 @@ class Navigation extends StatelessWidget {
           extended: true,
           destinations: [
             NavigationRailDestination(
-              icon: const CircleAvatar(
-                radius: 20.0,
-                backgroundImage: NetworkImage(
-                  'https://thumbs.dreamstime.com/b/businessman-icon-image-male-'
-                      'avatar-profile-vector-glasses-beard-hairstyle-179728610.jpg',
-                ),
-                backgroundColor: Colors.transparent,
-              ),
-              label: Row(
-                children: [
-                  Text(
-                    'Mary J.',
-                    style: AppStyles.s17w500.copyWith(
-                      color: current == 0 ? AppColors.gray900 : AppColors.gray600,
-                      fontWeight: current == 0 ? FontWeight.bold : FontWeight.normal,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 80,
-                  ),
-                  SvgPicture.asset(AppAssets.svg.arrowRight2)
-                ],
+              icon: const NavBarProfileIcon(),
+              label: NavBarProfileLabel(
+                isActive: current == 0,
+                label: 'Mary J.',
               ),
             ),
             NavigationRailDestination(
-              icon: SvgPicture.asset(
-                current == 1 ? AppAssets.svg.coursesBold : AppAssets.svg.courses,
-                color: current == 1 ? AppColors.gray900 : AppColors.gray600,
-              ),
-              label: Text(
-                S.of(context).courses,
-                style: AppStyles.s15w500.copyWith(
-                  color: current == 1 ? AppColors.gray900 : AppColors.gray600,
-                  fontWeight: current == 1 ? FontWeight.bold : FontWeight.normal,
-                ),
+              label: NavBarLabel(isActive: current == 1, label: S.of(context).courses),
+              icon: _NavBarSvg(
+                isActive: current == 1,
+                activeIconPath: AppAssets.svg.coursesBold,
+                inactiveIconPath: AppAssets.svg.courses,
               ),
             ),
             NavigationRailDestination(
-              icon: SvgPicture.asset(
-                current == 2 ? AppAssets.svg.assignmentsBold : AppAssets.svg.assignments,
-                color: current == 2 ? AppColors.gray900 : AppColors.gray600,
-              ),
-              label: Text(
-                S.of(context).assignments,
-                style: AppStyles.s15w500.copyWith(
-                  color: current == 2 ? AppColors.gray900 : AppColors.gray600,
-                  fontWeight: current == 2 ? FontWeight.bold : FontWeight.normal,
-                ),
+              label: NavBarLabel(isActive: current == 2, label: S.of(context).assignments),
+              icon: _NavBarSvg(
+                isActive: current == 2,
+                activeIconPath: AppAssets.svg.assignmentsBold,
+                inactiveIconPath: AppAssets.svg.assignments,
               ),
             ),
             NavigationRailDestination(
-              icon: SvgPicture.asset(
-                current == 3 ? AppAssets.svg.gradeBookBold : AppAssets.svg.gradeBook,
-                color: current == 3 ? AppColors.gray900 : AppColors.gray600,
-              ),
-              label: Text(
-                S.of(context).gradeBook,
-                style: AppStyles.s15w500.copyWith(
-                  color: current == 3 ? AppColors.gray900 : AppColors.gray600,
-                  fontWeight: current == 3 ? FontWeight.bold : FontWeight.normal,
-                ),
+              label: NavBarLabel(isActive: current == 3, label: S.of(context).gradeBook),
+              icon: _NavBarSvg(
+                isActive: current == 3,
+                activeIconPath: AppAssets.svg.gradeBookBold,
+                inactiveIconPath: AppAssets.svg.gradeBook,
               ),
             ),
             NavigationRailDestination(
-              icon: SvgPicture.asset(
-                current == 4 ? AppAssets.svg.scheduleBold : AppAssets.svg.schedule,
-                color: current == 4 ? AppColors.gray900 : AppColors.gray600,
-              ),
-              label: Text(
-                S.of(context).schedule,
-                style: AppStyles.s15w500.copyWith(
-                  color: current == 4 ? AppColors.gray900 : AppColors.gray600,
-                  fontWeight: current == 4 ? FontWeight.bold : FontWeight.normal,
-                ),
+              label: NavBarLabel(isActive: current == 4, label: S.of(context).schedule),
+              icon: _NavBarSvg(
+                isActive: current == 4,
+                activeIconPath: AppAssets.svg.scheduleBold,
+                inactiveIconPath: AppAssets.svg.schedule,
               ),
             ),
             NavigationRailDestination(
-              icon: SvgPicture.asset(
-                current == 5 ? AppAssets.svg.savedBold : AppAssets.svg.saved,
-                color: current == 5 ? AppColors.gray900 : AppColors.gray600,
-              ),
-              label: Text(
-                S.of(context).saved,
-                style: AppStyles.s15w500.copyWith(
-                  color: current == 5 ? AppColors.gray900 : AppColors.gray600,
-                  fontWeight: current == 5 ? FontWeight.bold : FontWeight.normal,
-                ),
+              label: NavBarLabel(isActive: current == 5, label: S.of(context).saved),
+              icon: _NavBarSvg(
+                isActive: current == 5,
+                activeIconPath: AppAssets.svg.savedBold,
+                inactiveIconPath: AppAssets.svg.saved,
               ),
             ),
             NavigationRailDestination(
-              icon: SvgPicture.asset(
-                current == 6 ? AppAssets.svg.settingsBold : AppAssets.svg.settings,
-                color: current == 6 ? AppColors.gray900 : AppColors.gray600,
-              ),
-              label: Text(
-                S.of(context).settings,
-                style: AppStyles.s15w500.copyWith(
-                  color: current == 6 ? AppColors.gray900 : AppColors.gray600,
-                  fontWeight: current == 6 ? FontWeight.bold : FontWeight.normal,
-                ),
+              label: NavBarLabel(isActive: current == 6, label: S.of(context).settings),
+              icon: _NavBarSvg(
+                isActive: current == 6,
+                activeIconPath: AppAssets.svg.settingsBold,
+                inactiveIconPath: AppAssets.svg.settings,
               ),
             ),
           ],
           selectedIndex: current,
-          onDestinationSelected: (int index) {
-            switchTo(index);
-          },
+          onDestinationSelected: (index) => switchTo(index),
+        ),
+        Expanded(
+          child: IndexedStack(
+            index: current,
+            children: const [
+              ProfileScreen(),
+              CoursesScreen(),
+              AssignmentsScreen(),
+              GradeBookScreen(),
+              ScheduleScreen(),
+              SavedScreen(),
+              SettingsScreen(),
+            ],
+          ),
         ),
       ],
+    );
+  }
+}
+
+class NavBarProfileLabel extends StatelessWidget {
+  const NavBarProfileLabel({Key? key, required this.isActive, required this.label}) : super(key: key);
+  final bool isActive;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          label,
+          style: AppStyles.s17w500.copyWith(
+            color: isActive ? AppColors.gray900 : AppColors.gray600,
+            fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+        SvgPicture.asset(AppAssets.svg.arrowRight2)
+      ],
+    );
+  }
+}
+
+class NavBarProfileIcon extends StatelessWidget {
+  const NavBarProfileIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const CircleAvatar(
+      radius: 20.0,
+      backgroundImage: NetworkImage(
+        'https://thumbs.dreamstime.com/b/businessman-icon-image-male-'
+        'avatar-profile-vector-glasses-beard-hairstyle-179728610.jpg',
+      ),
+      backgroundColor: Colors.transparent,
+    );
+  }
+}
+
+class NavBarLabel extends StatelessWidget {
+  const NavBarLabel({Key? key, required this.isActive, required this.label}) : super(key: key);
+  final bool isActive;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      label,
+      style: AppStyles.s15w500.copyWith(
+        color: isActive ? AppColors.gray900 : AppColors.gray600,
+        fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+      ),
+      textAlign: TextAlign.center,
+      softWrap: false,
+      overflow: TextOverflow.fade,
+    );
+  }
+}
+
+class _NavBarSvg extends StatelessWidget {
+  const _NavBarSvg({
+    required this.isActive,
+    required this.activeIconPath,
+    required this.inactiveIconPath,
+  });
+
+  final bool isActive;
+  final String activeIconPath;
+  final String inactiveIconPath;
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      isActive ? activeIconPath : inactiveIconPath,
     );
   }
 }
