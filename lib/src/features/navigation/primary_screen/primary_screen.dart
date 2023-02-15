@@ -1,3 +1,4 @@
+import 'package:diploma_web/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../app_router/app_router.dart';
@@ -12,37 +13,50 @@ class PrimaryScreen extends StatelessWidget {
       onWillPop: () async {
         return false;
       },
-      child: AutoTabsScaffold(
-        builder: (context, child, animation) => child,
-        routes: const [
-          ProfileRouter(
-            children: [ProfileScreenRoute()],
+      child: SafeArea(
+        child: AutoTabsScaffold(
+          backgroundColor: AppColors.white,
+          builder: (context, child, animation) => Row(
+            children: [
+              const SizedBox(
+                width: 250,
+              ),
+              Expanded(child: child)
+            ],
           ),
-          CoursesRouter(
-            children: [CoursesScreenRoute()],
-          ),
-          AssignmentsRouter(
-            children: [AssignmentsScreenRoute()],
-          ),
-          GradeBookRouter(
-            children: [GradeBookScreenRoute() , ],
-          ),
-          ScheduleRouter(
-            children: [ScheduleScreenRoute()],
-          ),
-          SavedRouter(
-            children: [SavedScreenRoute()],
-          ),
-          SettingsRouter(
-            children: [SettingsScreenRoute()],
-          ),
-        ],
-        bottomNavigationBuilder: (context, tabsRouter) {
-          return Navigation(
-            current: tabsRouter.activeIndex,
-            switchTo: tabsRouter.setActiveIndex,
-          );
-        },
+          routes: const [
+            ProfileRouter(
+              children: [ProfileScreenRoute()],
+            ),
+            CoursesRouter(
+              children: [CoursesScreenRoute()],
+            ),
+            AssignmentsRouter(
+              children: [AssignmentsScreenRoute()],
+            ),
+            GradeBookRouter(
+              children: [
+                GradeBookScreenRoute(),
+              ],
+            ),
+            ScheduleRouter(
+              children: [ScheduleScreenRoute()],
+            ),
+            SavedRouter(
+              children: [SavedScreenRoute()],
+            ),
+            SettingsRouter(
+              children: [SettingsScreenRoute()],
+            ),
+          ],
+          floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+          floatingActionButtonBuilder: (context, tabsRouter) {
+            return Navigation(
+              current: tabsRouter.activeIndex,
+              switchTo: tabsRouter.setActiveIndex,
+            );
+          },
+        ),
       ),
     );
   }

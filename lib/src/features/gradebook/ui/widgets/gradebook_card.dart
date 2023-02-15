@@ -13,6 +13,9 @@ class GradeBookCard extends StatelessWidget {
       padding: const EdgeInsets.all(6),
       child: Card(
         elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         margin: const EdgeInsets.symmetric(vertical: 6),
         child: Padding(
           padding: const EdgeInsets.all(25.0),

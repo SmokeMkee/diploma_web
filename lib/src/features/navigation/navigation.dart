@@ -1,18 +1,11 @@
 import 'package:diploma_web/constants/app_styles.dart';
-import 'package:diploma_web/src/features/assignments/ui/assignments_screen.dart';
-import 'package:diploma_web/src/features/courses/ui/courses_screen.dart';
-import 'package:diploma_web/src/features/gradebook/ui/gradebook_screen.dart';
 import 'package:diploma_web/src/features/navigation/widgets/log_out_widget.dart';
-import 'package:diploma_web/src/features/saved/ui/saved_screen.dart';
-import 'package:diploma_web/src/features/schedule/ui/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../constants/app_assets.dart';
 import '../../../constants/app_colors.dart';
 import '../localization/generated/l10n.dart';
-import '../profile/ui/profile_screen.dart';
-import '../settings/ui/settings_screen.dart';
 
 class Navigation extends StatelessWidget {
   const Navigation({Key? key, required this.switchTo, required this.current}) : super(key: key);
@@ -26,7 +19,6 @@ class Navigation extends StatelessWidget {
       children: [
         NavigationRail(
           trailing: const LogOutWidget(),
-          elevation: 3,
           backgroundColor: AppColors.background,
           labelType: NavigationRailLabelType.none,
           extended: true,
@@ -89,20 +81,6 @@ class Navigation extends StatelessWidget {
           ],
           selectedIndex: current,
           onDestinationSelected: (index) => switchTo(index),
-        ),
-        Expanded(
-          child: IndexedStack(
-            index: current,
-            children: const [
-              ProfileScreen(),
-              CoursesScreen(),
-              AssignmentsScreen(),
-              GradeBookScreen(),
-              ScheduleScreen(),
-              SavedScreen(),
-              SettingsScreen(),
-            ],
-          ),
         ),
       ],
     );

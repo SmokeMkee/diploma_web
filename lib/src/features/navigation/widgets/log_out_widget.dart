@@ -1,10 +1,10 @@
+import 'package:diploma_web/src/features/navigation/app_router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_styles.dart';
-import '../../auth/sign_in/ui/authorization_screen.dart';
 import '../../localization/generated/l10n.dart';
 
 class LogOutWidget extends StatelessWidget {
@@ -18,12 +18,7 @@ class LogOutWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(bottom: 46),
           child: GestureDetector(
-            onTap: () => Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AuthorizationScreen(),
-              ),
-            ),
+            onTap: () => context.router.navigate(const AuthorizationScreenRoute()),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

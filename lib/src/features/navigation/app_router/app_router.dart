@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:diploma_web/src/features/assignments/ui/assignments_screen.dart';
+import 'package:diploma_web/src/features/auth/sign_in/ui/authorization_screen.dart';
 import 'package:diploma_web/src/features/courses/ui/courses_screen.dart';
 import 'package:diploma_web/src/features/gradebook/gradebook_detailed/ui/gradebook_detailed.dart';
 import 'package:diploma_web/src/features/navigation/primary_screen/primary_screen.dart';
@@ -11,11 +12,14 @@ import 'package:diploma_web/src/features/settings/ui/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../gradebook/ui/gradebook_screen.dart';
+
 export 'package:auto_route/auto_route.dart';
+
 part 'app_router.gr.dart';
+
 @AdaptiveAutoRouter(
   routes: <AutoRoute>[
-
+    AutoRoute(page: AuthorizationScreen),
     CustomRoute(
       page: PrimaryScreen,
       initial: true,
@@ -33,7 +37,6 @@ part 'app_router.gr.dart';
           name: 'CoursesRouter',
           children: [
             AutoRoute(page: CoursesScreen, initial: true),
-
           ],
         ),
         AutoRoute(
@@ -41,8 +44,6 @@ part 'app_router.gr.dart';
           name: 'AssignmentsRouter',
           children: [
             AutoRoute(page: AssignmentsScreen, initial: true),
-
-
           ],
         ),
         AutoRoute(
@@ -50,9 +51,9 @@ part 'app_router.gr.dart';
           name: 'GradeBookRouter',
           children: [
             AutoRoute(page: GradeBookScreen, initial: true),
-            AutoRoute(page: GradeBookDetailed,),
-
-
+            AutoRoute(
+              page: GradeBookDetailed,
+            ),
           ],
         ),
         AutoRoute(

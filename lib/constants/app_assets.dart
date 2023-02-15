@@ -45,4 +45,6 @@ class _Svg {
   final String usa = 'assets/svg/usa.svg';
   final String kz = 'assets/svg/kazakhstan.svg';
   final String rus = 'assets/svg/russia.svg';
+  final String arrowLeft = 'assets/svg/arrow_left.svg';
+  final String feedback = 'assets/svg/feedback.svg';
 }
