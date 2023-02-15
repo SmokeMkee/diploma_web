@@ -63,7 +63,7 @@ class CoursesScreen extends StatelessWidget {
                         CourseCard(),
                         CourseCard(),
                         CourseCard(),
-                        CourseCard(),
+                        // CourseCard(),
                         CourseCard(),
                       ],
                     ),

@@ -18,7 +18,7 @@ class LogOutWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(bottom: 46),
           child: GestureDetector(
-            //onTap: () => context.router.navigate(const AuthorizationScreenRoute()),
+             onTap: () => context.router.navigate(const AuthorizationScreenRoute()),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
