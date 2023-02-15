@@ -18,12 +18,13 @@ class LogOutWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(bottom: 46),
           child: GestureDetector(
-            onTap: () => context.router.navigate(const AuthorizationScreenRoute()),
+            //onTap: () => context.router.navigate(const AuthorizationScreenRoute()),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SvgPicture.asset(
                   AppAssets.svg.logOut,
+
                   color: AppColors.gray600,
                 ),
                 const SizedBox(width: 20),
