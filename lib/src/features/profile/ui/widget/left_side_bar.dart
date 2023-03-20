@@ -1,6 +1,7 @@
 import 'package:diploma_web/constants/app_assets.dart';
 import 'package:diploma_web/constants/app_colors.dart';
 import 'package:diploma_web/constants/app_styles.dart';
+import 'package:diploma_web/src/features/navigation/app_router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -42,7 +43,9 @@ class ResumeWidget extends StatelessWidget {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.router.push(const MyResumesRoute());
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.accent,
                   shape: RoundedRectangleBorder(
@@ -113,7 +116,8 @@ class PhotoWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: Text(

@@ -1,4 +1,5 @@
 import 'package:diploma_web/src/features/assignments/ui/widgets/assignment_card.dart';
+import 'package:diploma_web/src/features/navigation/app_router/app_router.dart';
 import 'package:diploma_web/src/widgets/app_filter_buttun.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +60,11 @@ class AssignmentsScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 itemBuilder: (context, int index) {
-                  return const AssignmentsCard();
+                  return GestureDetector(
+                    onTap: () {
+                      context.router.push(CoursesDetailedRoute());
+                    },
+                      child: const AssignmentsCard());
                 },
                 itemCount: 15,
               ),

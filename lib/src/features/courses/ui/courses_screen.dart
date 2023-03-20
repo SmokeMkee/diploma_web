@@ -1,5 +1,6 @@
 import 'package:diploma_web/constants/app_assets.dart';
 import 'package:diploma_web/src/features/courses/ui/widget/course_card.dart';
+import 'package:diploma_web/src/features/navigation/app_router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -46,26 +47,19 @@ class CoursesScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
                   Expanded(
-                    child: GridView(
+                    child: GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
                         crossAxisSpacing: 21,
                         mainAxisSpacing: 35,
                       ),
-                      children: const [
-                        CourseCard(),
-                        CourseCard(),
-                        CourseCard(),
-                        CourseCard(),
-                        CourseCard(),
-                        CourseCard(),
-                        CourseCard(),
-                        CourseCard(),
-                        CourseCard(),
-                        CourseCard(),
-                        // CourseCard(),
-                        CourseCard(),
-                      ],
+
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                            onTap: () => context.router.navigate(CoursesDetailedRoute()) ,
+                            child: const  CourseCard());
+                      },
+                      itemCount: 13,
                     ),
                   )
                 ],

@@ -3,6 +3,7 @@ import 'package:diploma_web/src/features/localization/generated/l10n.dart';
 import 'package:diploma_web/src/features/localization/i_locale_repo.dart';
 import 'package:diploma_web/src/features/navigation/app_router/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -10,11 +11,12 @@ final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
+
   return runApp(
     DependenciesProvider(
       builder: (context) {
         return InheritedProvider<AppRouter>(
-          create: (context) => AppRouter(
+          create: (context) =>  AppRouter(
            GlobalKey<NavigatorState>(),
           ),
           child: ValueListenableBuilder<Locale>(

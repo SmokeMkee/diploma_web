@@ -32,6 +32,7 @@ class _Svg {
   final String savedBold = 'assets/svg/saved_bold.svg';
   final String settingsBold = 'assets/svg/settings_bold.svg';
   final String arrowRight2 = 'assets/svg/arrow_rigth_2.svg';
+  final String arrowLeft2 = 'assets/svg/arrow_left_2.svg';
   final String logOut = 'assets/svg/logout.svg';
   final String notification = 'assets/svg/notification.svg';
   final String accessibility = 'assets/svg/accessibility.svg';
@@ -47,4 +48,8 @@ class _Svg {
   final String rus = 'assets/svg/russia.svg';
   final String arrowLeft = 'assets/svg/arrow_left.svg';
   final String feedback = 'assets/svg/feedback.svg';
+  final String save = 'assets/svg/save.svg';
+  final String downloadBold = 'assets/svg/download_bold.svg';
+  final String add = 'assets/svg/add.svg';
+
 }

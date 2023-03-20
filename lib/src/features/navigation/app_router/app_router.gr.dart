@@ -23,6 +23,12 @@ class _$AppRouter extends RootStackRouter {
         child: const AuthorizationScreen(),
       );
     },
+    CreateResumeRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const CreateResume(),
+      );
+    },
     PrimaryScreenRoute.name: (routeData) {
       return CustomPage<dynamic>(
         routeData: routeData,
@@ -80,10 +86,28 @@ class _$AppRouter extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
+    MyResumesRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const MyResumes(),
+      );
+    },
     CoursesScreenRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
         routeData: routeData,
         child: const CoursesScreen(),
+      );
+    },
+    CoursesDetailedRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const CoursesDetailed(),
+      );
+    },
+    CoursesDetailedLessonRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const CoursesDetailedLesson(),
       );
     },
     AssignmentsScreenRoute.name: (routeData) {
@@ -131,6 +155,10 @@ class _$AppRouter extends RootStackRouter {
           path: '/authorization-screen',
         ),
         RouteConfig(
+          CreateResumeRoute.name,
+          path: '/create-resume',
+        ),
+        RouteConfig(
           PrimaryScreenRoute.name,
           path: '/',
           children: [
@@ -143,7 +171,12 @@ class _$AppRouter extends RootStackRouter {
                   ProfileScreenRoute.name,
                   path: '',
                   parent: ProfileRouter.name,
-                )
+                ),
+                RouteConfig(
+                  MyResumesRoute.name,
+                  path: 'my-resumes',
+                  parent: ProfileRouter.name,
+                ),
               ],
             ),
             RouteConfig(
@@ -155,7 +188,17 @@ class _$AppRouter extends RootStackRouter {
                   CoursesScreenRoute.name,
                   path: '',
                   parent: CoursesRouter.name,
-                )
+                ),
+                RouteConfig(
+                  CoursesDetailedRoute.name,
+                  path: 'courses-detailed',
+                  parent: CoursesRouter.name,
+                ),
+                RouteConfig(
+                  CoursesDetailedLessonRoute.name,
+                  path: 'courses-detailed-lesson',
+                  parent: CoursesRouter.name,
+                ),
               ],
             ),
             RouteConfig(
@@ -167,7 +210,12 @@ class _$AppRouter extends RootStackRouter {
                   AssignmentsScreenRoute.name,
                   path: '',
                   parent: AssignmentsRouter.name,
-                )
+                ),
+                RouteConfig(
+                  CoursesDetailedRoute.name,
+                  path: 'courses-detailed',
+                  parent: AssignmentsRouter.name,
+                ),
               ],
             ),
             RouteConfig(
@@ -238,6 +286,18 @@ class AuthorizationScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AuthorizationScreenRoute';
+}
+
+/// generated route for
+/// [CreateResume]
+class CreateResumeRoute extends PageRouteInfo<void> {
+  const CreateResumeRoute()
+      : super(
+          CreateResumeRoute.name,
+          path: '/create-resume',
+        );
+
+  static const String name = 'CreateResumeRoute';
 }
 
 /// generated route for
@@ -357,6 +417,18 @@ class ProfileScreenRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MyResumes]
+class MyResumesRoute extends PageRouteInfo<void> {
+  const MyResumesRoute()
+      : super(
+          MyResumesRoute.name,
+          path: 'my-resumes',
+        );
+
+  static const String name = 'MyResumesRoute';
+}
+
+/// generated route for
 /// [CoursesScreen]
 class CoursesScreenRoute extends PageRouteInfo<void> {
   const CoursesScreenRoute()
@@ -366,6 +438,30 @@ class CoursesScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CoursesScreenRoute';
+}
+
+/// generated route for
+/// [CoursesDetailed]
+class CoursesDetailedRoute extends PageRouteInfo<void> {
+  const CoursesDetailedRoute()
+      : super(
+          CoursesDetailedRoute.name,
+          path: 'courses-detailed',
+        );
+
+  static const String name = 'CoursesDetailedRoute';
+}
+
+/// generated route for
+/// [CoursesDetailedLesson]
+class CoursesDetailedLessonRoute extends PageRouteInfo<void> {
+  const CoursesDetailedLessonRoute()
+      : super(
+          CoursesDetailedLessonRoute.name,
+          path: 'courses-detailed-lesson',
+        );
+
+  static const String name = 'CoursesDetailedLessonRoute';
 }
 
 /// generated route for

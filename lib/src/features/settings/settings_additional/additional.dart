@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_styles.dart';
+import '../../../widgets/app_divider.dart';
 
 class AdditionalSettings extends StatelessWidget {
   const AdditionalSettings({Key? key}) : super(key: key);
@@ -13,74 +14,70 @@ class AdditionalSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 40),
-          const Text(
-            'LANGUAGE',
-            style: AppStyles.s18w500,
-          ),
-          const SizedBox(height: 9),
-          Text(
-            'Select the types of notifications you will receive.',
-            style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
-          ),
-          const SizedBox(height: 21),
-          const DropButton(),
-          const SizedBox(height: 52),
-          const Divider(
-            thickness: 2,
-            height: 2,
-          ),
-          const SizedBox(height: 50),
-          const Text(
-            'INCLUSIVE TECHNOLOGY',
-            style: AppStyles.s18w500,
-          ),
-          const SizedBox(height: 9),
-          Text(
-            'Select system features for people with disabilities',
-            style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
-          ),
-          const InclusiveTile(),
-          const Divider(
-            thickness: 2,
-            height: 2,
-          ),
-          const InclusiveTile(),
-          const Divider(
-            thickness: 2,
-            height: 2,
-          ),
-          const InclusiveTile(),
-          const Divider(
-            thickness: 2,
-            height: 2,
-          ),
-          const InclusiveTile(),
-          const Divider(
-            thickness: 2,
-            height: 2,
-          ),
-          const InclusiveTile(),
-          const Divider(
-            thickness: 2,
-            height: 2,
-          ),
-          const InclusiveTile(),
-          const Divider(
-            thickness: 2,
-            height: 2,
-          ),
-          const InclusiveTile(),
-          const Divider(
-            thickness: 2,
-            height: 2,
-          ),
-          const NotificationTile(),
-          const NotificationTile(),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40),
+              const Text(
+                'LANGUAGE',
+                style: AppStyles.s18w500,
+              ),
+              const SizedBox(height: 9),
+              Text(
+                'Select the types of notifications you will receive.',
+                style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
+              ),
+              const SizedBox(height: 21),
+              const DropButton(),
+              const SizedBox(height: 52),
+              AppDivider(
+                width: constraints.maxWidth,
+              ),
+              const SizedBox(height: 50),
+              const Text(
+                'INCLUSIVE TECHNOLOGY',
+                style: AppStyles.s18w500,
+              ),
+              const SizedBox(height: 9),
+              Text(
+                'Select system features for people with disabilities',
+                style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
+              ),
+              const InclusiveTile(),
+              AppDivider(
+                width: constraints.maxWidth,
+              ),
+              const InclusiveTile(),
+              AppDivider(
+                width: constraints.maxWidth,
+              ),
+              const InclusiveTile(),
+              AppDivider(
+                width: constraints.maxWidth,
+              ),
+              const InclusiveTile(),
+              AppDivider(
+                width: constraints.maxWidth,
+              ),
+              const InclusiveTile(),
+              AppDivider(
+                width: constraints.maxWidth,
+              ),
+              const InclusiveTile(),
+              AppDivider(
+                width: constraints.maxWidth,
+              ),
+              const InclusiveTile(),
+              AppDivider(
+                width: constraints.maxWidth,
+              ),
+              const NotificationTile(),
+              const NotificationTile(),
+            ],
+          );
+        },
       ),
     );
   }

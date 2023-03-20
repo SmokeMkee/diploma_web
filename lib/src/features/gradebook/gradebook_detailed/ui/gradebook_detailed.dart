@@ -21,88 +21,85 @@ class GradeBookDetailed extends StatelessWidget {
         backgroundColor: AppColors.white,
         body: Padding(
           padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
-          child: DefaultTabController(
-            length: 2,
-            child: Scaffold(
-              appBar: const PreferredSize(
-                preferredSize: Size(double.infinity, 200),
-                child: HeaderWidget(
-                  title: 'gradebook > general english',
-                ),
+          child: Scaffold(
+            appBar: const PreferredSize(
+              preferredSize: Size(double.infinity, 200),
+              child: HeaderWidget(
+                title: 'gradebook > general english',
               ),
-              backgroundColor: Colors.transparent,
-              body: Column(
-                children: [
-                  const SizedBox(height: 35),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          AppBackButton(
-                            onTap: () {
-                              context.router.popAndPush(const GradeBookScreenRoute());
-                            },
-                          ),
-                          const SizedBox(width: 34),
-                          const CourseContainer(),
-                          const SizedBox(width: 25),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'General English',
-                                style: AppStyles.s15w500,
-                              ),
-                              Text(
-                                'Teacher: Alan Alexander',
-                                style: AppStyles.s14w400.copyWith(
-                                  color: AppColors.gray600,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: const [
-                          PerformanceTile(
-                            title: 'Total score',
-                            titleValue: '97.65%',
-                          ),
-                          PerformanceTile(
-                            title: 'Attendance',
-                            titleValue: '97.65%',
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 55),
-                  TabBar(
-                    unselectedLabelColor: AppColors.gray600,
-                    indicatorWeight: 6,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    indicatorColor: AppColors.accent,
-                    labelColor: AppColors.accent,
-                    labelStyle: AppStyles.s15w500.copyWith(color: AppColors.accent),
-                    tabs: const [
-                      Text('Grades'),
-                      Text('Attendance'),
-                    ],
-                  ),
-                  const SizedBox(height: 21),
-                  const Expanded(
-                    child: TabBarView(
+            ),
+            backgroundColor: Colors.transparent,
+            body: Column(
+              children: [
+                const SizedBox(height: 35),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
                       children: [
-                        GradesTableWidget(),
-                        TableCalendars(),
+                        AppBackButton(
+                          onTap: () {
+                            context.router.popAndPush(const GradeBookScreenRoute());
+                          },
+                        ),
+                        const SizedBox(width: 34),
+                        const CourseContainer(),
+                        const SizedBox(width: 25),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'General English',
+                              style: AppStyles.s15w500,
+                            ),
+                            Text(
+                              'Teacher: Alan Alexander',
+                              style: AppStyles.s14w400.copyWith(
+                                color: AppColors.gray600,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                  )
-                ],
-              ),
+                    Column(
+                      children: const [
+                        PerformanceTile(
+                          title: 'Total score',
+                          titleValue: '97.65%',
+                        ),
+                        PerformanceTile(
+                          title: 'Attendance',
+                          titleValue: '97.65%',
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                const SizedBox(height: 55),
+                TabBar(
+                  unselectedLabelColor: AppColors.gray600,
+                  indicatorWeight: 6,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicatorColor: AppColors.accent,
+                  labelColor: AppColors.accent,
+                  labelStyle: AppStyles.s15w500.copyWith(color: AppColors.accent),
+                  tabs: const [
+                    Text('Grades'),
+                    Text('Attendance'),
+                  ],
+                ),
+                const SizedBox(height: 21),
+                const Expanded(
+                  child: TabBarView(
+                    children: [
+                      GradesTableWidget(),
+                      TableCalendars(),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),
@@ -345,69 +342,65 @@ class TableBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          border: Border.all(
-            width: 1,
-            color: AppColors.gray200,
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        border: Border.all(
+          width: 1,
+          color: AppColors.gray200,
         ),
-        child: Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Table(
+            border: const TableBorder(
+              horizontalInside: BorderSide(
+                width: 1,
+                color: AppColors.gray200,
+                style: BorderStyle.solid,
+              ),
+            ),
+            columnWidths: const {
+              0: FlexColumnWidth(3),
+              1: FlexColumnWidth(1),
+              2: FlexColumnWidth(1),
+              3: FlexColumnWidth(1),
+            },
             children: [
-              Table(
-                border: const TableBorder(
-                  horizontalInside: BorderSide(
-                    width: 1,
-                    color: AppColors.gray200,
-                    style: BorderStyle.solid,
-                  ),
-                ),
-                columnWidths: const {
-                  0: FlexColumnWidth(3),
-                  1: FlexColumnWidth(1),
-                  2: FlexColumnWidth(1),
-                  3: FlexColumnWidth(1),
-                },
+              const TableRow(
                 children: [
-                  const TableRow(
-                    children: [
-                      HeaderTableText(text: 'Assignments'),
-                      HeaderTableText(text: 'Status'),
-                      HeaderTableText(text: 'Mark'),
-                      HeaderTableText(text: 'Feedback'),
-                    ],
-                  ),
-                  ...data.map(
-                    (e) {
-                      return TableRow(
-                        children: [
-                          TableCell(
-                            child: BodyTableText(text: e.assignments),
-                          ),
-                          TableCell(
-                            child: BodyTableText(text: e.status),
-                          ),
-                          TableCell(
-                            child: BodyTableText(text: e.mark),
-                          ),
-                          TableCell(
-                            verticalAlignment: TableCellVerticalAlignment.middle,
-                            child:
-                                e.feedback == true ? SvgPicture.asset(AppAssets.svg.feedback) : const SizedBox.shrink(),
-                          ),
-                        ],
-                      );
-                    },
-                  )
+                  HeaderTableText(text: 'Assignments'),
+                  HeaderTableText(text: 'Status'),
+                  HeaderTableText(text: 'Mark'),
+                  HeaderTableText(text: 'Feedback'),
                 ],
               ),
+              ...data.map(
+                (e) {
+                  return TableRow(
+                    children: [
+                      TableCell(
+                        child: BodyTableText(text: e.assignments),
+                      ),
+                      TableCell(
+                        child: BodyTableText(text: e.status),
+                      ),
+                      TableCell(
+                        child: BodyTableText(text: e.mark),
+                      ),
+                      TableCell(
+                        verticalAlignment: TableCellVerticalAlignment.middle,
+                        child:
+                            e.feedback == true ? SvgPicture.asset(AppAssets.svg.feedback) : const SizedBox.shrink(),
+                      ),
+                    ],
+                  );
+                },
+              )
             ],
           ),
-        ),
+        ],
       ),
     );
   }
