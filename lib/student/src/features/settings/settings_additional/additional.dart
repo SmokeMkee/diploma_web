@@ -6,6 +6,7 @@ import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_divider.dart';
 import '../../../widgets/app_drop_down_button.dart';
+import '../../localization/generated/l10n.dart';
 import '../settings_notifications/notifications.dart';
 
 class AdditionalSettings extends StatelessWidget {
@@ -20,13 +21,13 @@ class AdditionalSettings extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-              const Text(
-                'LANGUAGE',
+              Text(
+                S.of(context).language.toUpperCase(),
                 style: AppStyles.s18w500,
               ),
               const SizedBox(height: 9),
               Text(
-                'Select the types of notifications you will receive.',
+                S.of(context).pleaseSelectALanguage,
                 style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
               ),
               const SizedBox(height: 21),
@@ -36,13 +37,13 @@ class AdditionalSettings extends StatelessWidget {
                 width: constraints.maxWidth,
               ),
               const SizedBox(height: 50),
-              const Text(
-                'INCLUSIVE TECHNOLOGY',
+              Text(
+                S.of(context).inclusiveTechnology.toUpperCase(),
                 style: AppStyles.s18w500,
               ),
               const SizedBox(height: 9),
               Text(
-                'Select system features for people with disabilities',
+                S.of(context).selectSystemFeaturesForPeopleWithDisabilities,
                 style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
               ),
               const InclusiveTile(),
@@ -177,13 +178,13 @@ class InclusiveTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'INCLUSIVE TECHNOLOGY',
+                Text(
+                  S.of(context).inclusiveTechnology.toUpperCase(),
                   style: AppStyles.s15w500,
                 ),
                 const SizedBox(height: 9),
                 Text(
-                  'Select system features for people with disabilities',
+                  S.of(context).selectSystemFeaturesForPeopleWithDisabilities,
                   style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
                 ),
               ],

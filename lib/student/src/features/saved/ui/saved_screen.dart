@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../courses/ui/courses_screen.dart';
+import '../../localization/generated/l10n.dart';
 import '../../profile/ui/profile_screen.dart';
 
 class SavedScreen extends StatelessWidget {
@@ -15,10 +16,10 @@ class SavedScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'Courses',
+            title: S.of(context).courses,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -63,9 +64,9 @@ class TableWidget extends StatelessWidget {
             DataTable(
               dataTextStyle: AppStyles.s15w500.copyWith(color: AppColors.gray600),
               columns: [
-                DataColumn(label: Text('Material', style: AppStyles.s15w500.copyWith(color: AppColors.gray600))),
-                DataColumn(label: Text('Course name', style: AppStyles.s15w500.copyWith(color: AppColors.gray600))),
-                DataColumn(label: Text('Subcourse', style: AppStyles.s15w500.copyWith(color: AppColors.gray600))),
+                DataColumn(label: Text(S.of(context).material, style: AppStyles.s15w500.copyWith(color: AppColors.gray600))),
+                DataColumn(label: Text(S.of(context).courseName, style: AppStyles.s15w500.copyWith(color: AppColors.gray600))),
+                DataColumn(label: Text(S.of(context).subCourse, style: AppStyles.s15w500.copyWith(color: AppColors.gray600))),
                 DataColumn(
                   label: Center(
                     child: Padding(
@@ -73,7 +74,7 @@ class TableWidget extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         child: Text(
-                          'Clear all',
+                          S.of(context).clearAll,
                           style: AppStyles.s15w500.copyWith(color: AppColors.white),
                         ),
                       ),

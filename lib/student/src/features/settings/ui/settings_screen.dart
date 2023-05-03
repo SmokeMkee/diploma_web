@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
+import '../../localization/generated/l10n.dart';
 import '../../profile/ui/profile_screen.dart';
 import '../settings_additional/additional.dart';
 import '../settings_notifications/notifications.dart';
@@ -37,15 +38,15 @@ class SettingsScreen extends StatelessWidget {
                   indicatorColor: AppColors.accent,
                   labelColor: AppColors.accent,
                   labelStyle: AppStyles.s15w500.copyWith(color: AppColors.accent),
-                  tabs: const [
+                  tabs:  [
                     Tab(
-                      text: 'Password',
+                      text: S.of(context).password,
                     ),
                     Tab(
-                      text: 'Notifications',
+                      text: S.of(context).notifications,
                     ),
                     Tab(
-                      text: 'Additional Settings',
+                      text: S.of(context).additionalSettings,
                     ),
                   ],
                 ),

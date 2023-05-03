@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/course_container.dart';
+import '../../../localization/generated/l10n.dart';
 
 class ScheduleCard extends StatelessWidget {
   const ScheduleCard({Key? key}) : super(key: key);
@@ -46,8 +47,8 @@ class ScheduleCard extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                'General English',
+                              Text(
+                                S.of(context).generalEnglish,
                                 style: AppStyles.s15w500,
                               ),
                               const SizedBox(width: 10),
@@ -58,7 +59,7 @@ class ScheduleCard extends StatelessWidget {
                                 ),
                                 padding: const EdgeInsets.symmetric(vertical: 2.5, horizontal: 10),
                                 child: Text(
-                                  'Lecture',
+                                  S.of(context).lecture,
                                   style: AppStyles.s14w500.copyWith(color: AppColors.subtitle),
                                 ),
                               )

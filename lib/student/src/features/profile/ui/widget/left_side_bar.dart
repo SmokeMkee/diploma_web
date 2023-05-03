@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 
 class LeftSideBar extends StatelessWidget {
@@ -32,13 +33,13 @@ class ResumeWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Resume',
+        Text(
+          S.of(context).resume,
           style: AppStyles.s17w500,
         ),
         const SizedBox(height: 9),
         Text(
-          'Here you can create your resume',
+          S.of(context).hereYouCanCreateYourResume,
           style: AppStyles.s15w400.copyWith(color: AppColors.gray400),
         ),
         const SizedBox(height: 24),
@@ -61,7 +62,7 @@ class ResumeWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'My resumes',
+                        S.of(context).myResumes,
                         style:
                             AppStyles.s15w500.copyWith(color: AppColors.white),
                       ),
@@ -100,13 +101,13 @@ class PhotoWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Mary Jane',
+            Text(
+              S.of(context).maryJane,
               style: AppStyles.s18w500,
             ),
             const SizedBox(height: 6),
             Text(
-              'Student',
+              S.of(context).student,
               style: AppStyles.s15w400.copyWith(color: AppColors.gray600),
             ),
             const SizedBox(height: 16),
@@ -114,7 +115,7 @@ class PhotoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppElevatedButton(
-                    title: 'Upload photo',
+                    title: S.of(context).uploadPhoto,
                     onTap: () async {
                       await context.read<ILocaleRepo>().apply('kk');
                     },
@@ -127,7 +128,7 @@ class PhotoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppBorderButton(
-                    title: 'Delete',
+                    title: S.of(context).delete,
                     onTap: () {},
                   ),
                 ),

@@ -5,6 +5,7 @@ import '../../../../../../constants/app_assets.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/course_container.dart';
+import '../../../localization/generated/l10n.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({Key? key}) : super(key: key);
@@ -31,13 +32,13 @@ class CourseCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 23),
-              const Text(
-                'General English',
+              Text(
+                S.of(context).generalEnglish,
                 style: AppStyles.s18w500,
               ),
               const SizedBox(height: 9),
               Text(
-                'Teacher: Alan Alexander',
+                S.of(context).teacherAlanAlexander,
                 style: AppStyles.s14w400.copyWith(color: AppColors.gray600),
               ),
             ],
