@@ -51,5 +51,6 @@ class _Svg {
   final String save = 'assets/svg/save.svg';
   final String downloadBold = 'assets/svg/download_bold.svg';
   final String add = 'assets/svg/add.svg';
+  final String addCircleBold = 'assets/svg/add_circle_bold.svg';
 
 }

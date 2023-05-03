@@ -8,7 +8,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.4 <3.0.0'
+  sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -20,6 +20,9 @@ dependencies:
   flutter_bloc: ^8.1.1
   side_navigation: ^1.0.4
   auto_route: ^5.0.3
+  equatable: ^2.0.5
+  flutter_secure_storage: ^8.0.0
+  bloc_concurrency: ^0.2.1
   syncfusion_flutter_datagrid: ^20.4.43
   flutter_localizations:
     sdk: flutter

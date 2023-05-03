@@ -1,7 +1,8 @@
-import 'package:diploma_web/src/features/init/dependencies_provider/dependencies_provider.dart';
-import 'package:diploma_web/src/features/localization/generated/l10n.dart';
-import 'package:diploma_web/src/features/localization/i_locale_repo.dart';
-import 'package:diploma_web/src/features/navigation/app_router/app_router.dart';
+
+import 'package:diploma_web/student/src/features/init/dependencies_provider/dependencies_provider.dart';
+import 'package:diploma_web/student/src/features/localization/generated/l10n.dart';
+import 'package:diploma_web/student/src/features/localization/i_locale_repo.dart';
+import 'package:diploma_web/student/src/features/navigation/app_router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -37,6 +38,7 @@ void main() {
                 debugShowCheckedModeBanner: false,
                 locale: locale,
                 supportedLocales: S.delegate.supportedLocales,
+
               );
             },
           ),
