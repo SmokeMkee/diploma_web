@@ -1,7 +1,9 @@
 import 'package:diploma_web/constants/app_assets.dart';
 import 'package:diploma_web/constants/app_colors.dart';
 import 'package:diploma_web/constants/app_styles.dart';
+import 'package:diploma_web/student/src/features/localization/i_locale_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../navigation/app_router/app_router.dart';
@@ -113,7 +115,9 @@ class PhotoWidget extends StatelessWidget {
                 Expanded(
                   child: AppElevatedButton(
                     title: 'Upload photo',
-                    onTap: () {},
+                    onTap: () async {
+                      await context.read<ILocaleRepo>().apply('kk');
+                    },
                   ),
                 ),
               ],

@@ -1,5 +1,4 @@
 import 'package:diploma_web/constants/app_styles.dart';
-import 'package:diploma_web/student/src/features/navigation/primary_screen/primary_screen.dart';
 import 'package:diploma_web/student/src/features/navigation/widgets/log_out_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

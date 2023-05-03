@@ -21,6 +21,7 @@
   "settings": "Настройки",
   "courses": "Курсы",
   "logOut" : "Выйти",
-  "groups" : "Группы"
-
+  "groups" : "Группы",
+  "allCourses" : "Все курсы",
+  "secondCourses" : "курс 2"
 }

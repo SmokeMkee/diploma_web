@@ -279,6 +279,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Все курсы`
+  String get allCourses {
+    return Intl.message(
+      'Все курсы',
+      name: 'allCourses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `курс 2`
+  String get secondCourses {
+    return Intl.message(
+      'курс 2',
+      name: 'secondCourses',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

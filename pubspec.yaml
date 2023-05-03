@@ -61,4 +61,4 @@ flutter_intl:
   enabled: true
   main_locale: "ru"
   arb-dir: lib/src/features/localization/
-  output_dir: lib/src/features/localization/generated
+  output_dir: lib/student/src/features/localization/generated

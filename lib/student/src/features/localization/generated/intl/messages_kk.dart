@@ -21,5 +21,40 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'kk';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "allCourses": MessageLookupByLibrary.simpleMessage("Все курсы"),
+        "assignments": MessageLookupByLibrary.simpleMessage("заданиялар"),
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Изменить пароль"),
+        "courses": MessageLookupByLibrary.simpleMessage("Курсы"),
+        "emailAddress":
+            MessageLookupByLibrary.simpleMessage("Адрес электронной почты"),
+        "enterEmailForAccount": MessageLookupByLibrary.simpleMessage(
+            "Введите адрес электронной почты, который вы используете для своей учетной записи"),
+        "enterNewPassword":
+            MessageLookupByLibrary.simpleMessage("Введите новый пароль"),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("Вы забыли свой пароль"),
+        "gradeBook": MessageLookupByLibrary.simpleMessage("айтшы"),
+        "groups": MessageLookupByLibrary.simpleMessage("Группы"),
+        "logIn": MessageLookupByLibrary.simpleMessage("Авторизоваться"),
+        "logInAcc": MessageLookupByLibrary.simpleMessage("Войти в аккаунт"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Выйти"),
+        "next": MessageLookupByLibrary.simpleMessage("Следующий"),
+        "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+        "passwordRecovery":
+            MessageLookupByLibrary.simpleMessage("Восстановление пароля"),
+        "rememberPassword":
+            MessageLookupByLibrary.simpleMessage("Помните свой пароль"),
+        "resetPassword": MessageLookupByLibrary.simpleMessage("Сброс пароля"),
+        "saved": MessageLookupByLibrary.simpleMessage("Сохранено"),
+        "schedule": MessageLookupByLibrary.simpleMessage("Расписание"),
+        "secondCourses": MessageLookupByLibrary.simpleMessage("курс 2"),
+        "sendAgain": MessageLookupByLibrary.simpleMessage("Отправь снова"),
+        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+        "verificationCode":
+            MessageLookupByLibrary.simpleMessage("Проверочный код"),
+        "verificationCodeByEmail": MessageLookupByLibrary.simpleMessage(
+            "Мы отправили вам код подтверждения по электронной почте")
+      };
 }
