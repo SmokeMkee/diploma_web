@@ -1,3 +1,4 @@
+import 'package:diploma_web/student/src/features/courses/data/repo/repo_courses.dart';
 import 'package:diploma_web/student/src/features/localization/i_locale_repo.dart';
 import 'package:diploma_web/student/src/features/profile/data/repo/repo_profile.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,11 @@ class ReposProvider extends StatelessWidget {
         ),
         Provider(
           create: (context) => RepoAuth(
+            api: RepositoryProvider.of<Api>(context),
+          ),
+        ),
+        Provider(
+          create: (context) => RepoCourses(
             api: RepositoryProvider.of<Api>(context),
           ),
         ),

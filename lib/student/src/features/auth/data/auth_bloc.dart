@@ -29,7 +29,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> signIn(SignInEvent event, Emitter<AuthState> emit) async {
     try {
       final response = await repo.sign(event.email, event.password);
-      if(response.userType == 'student'){
+      print(response.token);
+      if(response.userType == 'teacher'){
         emit(AuthError(message: 'неверный пароль или email'));
       }else{
         storage.write(key: 'token', value: response.token);

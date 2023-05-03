@@ -1,3 +1,5 @@
+import 'package:diploma_web/student/src/features/courses/data/bloc/courses_bloc.dart';
+import 'package:diploma_web/student/src/features/courses/data/repo/repo_courses.dart';
 import 'package:diploma_web/student/src/features/profile/data/bloc/profile_bloc.dart';
 import 'package:diploma_web/student/src/features/profile/data/repo/repo_profile.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,11 @@ class BlocsProvider extends StatelessWidget {
           create: (context) => AuthBloc(
             repo: RepositoryProvider.of<RepoAuth>(context),
           ),
+        ),
+        BlocProvider<CoursesBloc>(
+          create: (context) => CoursesBloc(
+            repo: RepositoryProvider.of<RepoCourses>(context),
+          )..add(FetchCoursesEvent()),
         ),
 
       ],

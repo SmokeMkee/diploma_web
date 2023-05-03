@@ -1,6 +1,7 @@
 import 'package:diploma_web/constants/app_assets.dart';
 import 'package:diploma_web/student/src/features/courses/ui/widget/course_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../constants/app_colors.dart';
@@ -9,6 +10,7 @@ import '../../../widgets/app_filter_buttun.dart';
 import '../../../widgets/app_text_form_field.dart';
 import '../../navigation/app_router/app_router.dart';
 import '../../profile/ui/profile_screen.dart';
+import '../data/bloc/courses_bloc.dart';
 
 class CoursesScreen extends StatelessWidget {
   const CoursesScreen({Key? key}) : super(key: key);
@@ -35,32 +37,43 @@ class CoursesScreen extends StatelessWidget {
                 children: [
                   const SearchWidget(),
                   const SizedBox(height: 53),
-                  Text(
-                    'All courses',
-                    style: AppStyles.s15w500.copyWith(color: AppColors.accent),
-                  ),
-                  const SizedBox(height: 8),
                   const Divider(
                     height: 4,
                     thickness: 2,
                     color: AppColors.gray200,
                   ),
                   const SizedBox(height: 40),
-                  Expanded(
-                    child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        crossAxisSpacing: 21,
-                        mainAxisSpacing: 35,
-                      ),
-
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                            onTap: () => context.router.navigate(const CoursesDetailedRoute()) ,
-                            child: const  CourseCard());
-                      },
-                      itemCount: 13,
-                    ),
+                  BlocBuilder<CoursesBloc, CoursesState>(
+                    builder: (context, state) {
+                      if (state is CoursesData) {
+                        return Expanded(
+                          child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              crossAxisSpacing: 21,
+                              mainAxisSpacing: 35,
+                            ),
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                onTap: () => context.router
+                                    .navigate(const CoursesDetailedRoute()),
+                                child: CourseCard(
+                                  courses: state.listCourses[index],
+                                ),
+                              );
+                            },
+                            itemCount: state.listCourses.length,
+                          ),
+                        );
+                      }
+                      if (state is CoursesLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
                   )
                 ],
               ),
