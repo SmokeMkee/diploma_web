@@ -7,6 +7,7 @@ import '../../../../../../constants/app_assets.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/app_divider.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../profile/ui/profile_screen.dart';
 
@@ -18,10 +19,10 @@ class CoursesDetailedLesson extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, 200),
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'courses > general english  > week 1',
+            title: S.of(context).coursesGeneralEnglishWeek1,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -76,7 +77,7 @@ class CoursesMainContent extends StatelessWidget {
                         label: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           child: Text(
-                            'Download .pdf',
+                            S.of(context).downloadPdf,
                             style: AppStyles.s15w500.copyWith(color: AppColors.white),
                           ),
                         ),
@@ -308,11 +309,11 @@ class CoursesLeftSideBar extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 Column(
-                  children: const [
-                    LeftSideBarTabsTile(title: 'Lecture', selected: true,),
-                    LeftSideBarTabsTile(title: 'Classwork', selected: false,),
-                    LeftSideBarTabsTile(title: 'Homework', selected: false,),
-                    LeftSideBarTabsTile(title: 'Quiz 1', selected: false,),
+                  children: [
+                    LeftSideBarTabsTile(title: S.of(context).lecture, selected: true,),
+                    LeftSideBarTabsTile(title: S.of(context).classWork, selected: false,),
+                    LeftSideBarTabsTile(title: S.of(context).homeWork, selected: false,),
+                    LeftSideBarTabsTile(title: S.of(context).quiz1, selected: false,),
                   ],
                 )
               ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/course_container.dart';
+import '../../../localization/generated/l10n.dart';
 
 class GradeBookCard extends StatelessWidget {
   const GradeBookCard({Key? key}) : super(key: key);
@@ -31,12 +32,12 @@ class GradeBookCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'General English',
+                      Text(
+                        S.of(context).generalEnglish,
                         style: AppStyles.s15w500,
                       ),
                       Text(
-                        'Teacher: Alan Alexander',
+                        S.of(context).teacherAlanAlexander,
                         style: AppStyles.s14w400.copyWith(
                           color: AppColors.gray600,
                         ),

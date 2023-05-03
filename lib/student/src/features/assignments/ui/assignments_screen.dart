@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/app_drop_down_button.dart';
 import '../../../widgets/app_filter_buttun.dart';
+import '../../localization/generated/l10n.dart';
 import '../../navigation/app_router/app_router.dart';
 import '../../profile/ui/profile_screen.dart';
 
@@ -15,10 +16,10 @@ class AssignmentsScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'assignments',
+            title: S.of(context).assignments,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -26,32 +27,33 @@ class AssignmentsScreen extends StatelessWidget {
           children: [
             const SizedBox(width: 50),
             Row(
-              children: const [
+              children: [
                 SizedBox(
                     width: 350,
                     child: AppDropDownButton(
                       items: [
                         DropdownMenuItem(
-                          value: 'Almaty',
+                          value: S.of(context).almaty,
                           child: Text(
-                            'Almaty',
-                            style: TextStyle(
+                            S.of(context).almaty,
+                            style: const TextStyle(
                               fontSize: 15,
                               color: Colors.black45,
                             ),
                           ),
                         ),
                         DropdownMenuItem(
-                          value: 'almaty',
+                          value: S.of(context).almaty,
                           child: Text(
-                            'Almaty',
-                            style: TextStyle(
+                            S.of(context).almaty,
+                            style: const TextStyle(
                               fontSize: 15,
                               color: Colors.black45,
                             ),
                           ),
                         ),
-                      ], initial: 'Almaty',
+                      ],
+                      initial: S.of(context).allCourses,
                     )),
                 SizedBox(width: 23),
                 AppFilterButton(),
@@ -62,9 +64,9 @@ class AssignmentsScreen extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (context, int index) {
                   return GestureDetector(
-                    onTap: () {
-                      context.router.push(CoursesDetailedRoute());
-                    },
+                      onTap: () {
+                        context.router.push(CoursesDetailedRoute());
+                      },
                       child: const AssignmentsCard());
                 },
                 itemCount: 15,

@@ -22,39 +22,161 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "allCourses": MessageLookupByLibrary.simpleMessage("Все курсы"),
-        "assignments": MessageLookupByLibrary.simpleMessage("заданиялар"),
+        "absent": MessageLookupByLibrary.simpleMessage("Болмады"),
+        "additionalFeatures":
+            MessageLookupByLibrary.simpleMessage("Қосымша мүмкіндіктер"),
+        "additionalFeaturesToHelpYouPerceiveInformationBetter":
+            MessageLookupByLibrary.simpleMessage(
+                "Ақпаратты жақсырақ қабылдауға көмектесетін қосымша мүмкіндіктер"),
+        "additionalSettings":
+            MessageLookupByLibrary.simpleMessage("Қосымша параметрлер"),
+        "allCourses": MessageLookupByLibrary.simpleMessage("Барлық курстар"),
+        "almaty": MessageLookupByLibrary.simpleMessage("Алматы"),
+        "april122023":
+            MessageLookupByLibrary.simpleMessage("2023 жылғы 12 сәуір"),
+        "assignments": MessageLookupByLibrary.simpleMessage("Тапсырмалар"),
+        "astana": MessageLookupByLibrary.simpleMessage("Астана"),
+        "attendance": MessageLookupByLibrary.simpleMessage("Сабаққа қатысу"),
+        "change": MessageLookupByLibrary.simpleMessage("Өзгерту"),
         "changePassword":
-            MessageLookupByLibrary.simpleMessage("Изменить пароль"),
-        "courses": MessageLookupByLibrary.simpleMessage("Курсы"),
+            MessageLookupByLibrary.simpleMessage("Құпия сөзді өзгерту"),
+        "citizenship": MessageLookupByLibrary.simpleMessage("Азаматтық"),
+        "city": MessageLookupByLibrary.simpleMessage("Қала"),
+        "classWork": MessageLookupByLibrary.simpleMessage("Класс жұмысы"),
+        "clearAll": MessageLookupByLibrary.simpleMessage("Барлығын тазалау"),
+        "contactDetails":
+            MessageLookupByLibrary.simpleMessage("Байланыс ақпараты"),
+        "country": MessageLookupByLibrary.simpleMessage("Мемлекет"),
+        "courseGeneralEnglish":
+            MessageLookupByLibrary.simpleMessage("Курс: Жалпы ағылшын тілі"),
+        "courseName": MessageLookupByLibrary.simpleMessage("Курс атауы"),
+        "courses": MessageLookupByLibrary.simpleMessage("Курстар"),
+        "coursesGeneralEnglish": MessageLookupByLibrary.simpleMessage(
+            "Курстар > Жалпы ағылшын тілі"),
+        "coursesGeneralEnglishWeek1": MessageLookupByLibrary.simpleMessage(
+            "Курстар > Жалпы ағылшын тілі  > 1-апта"),
+        "createResume": MessageLookupByLibrary.simpleMessage("Резюме жасау"),
+        "dateOfBirth": MessageLookupByLibrary.simpleMessage("Туған күн"),
+        "delete": MessageLookupByLibrary.simpleMessage("Жою"),
+        "downloadPdf":
+            MessageLookupByLibrary.simpleMessage(".pdf жүктеп алыңыз"),
+        "dueApril2420232359": MessageLookupByLibrary.simpleMessage(
+            "2023 жылдың 24 сәуірі, 23:59-ға дейін"),
         "emailAddress":
-            MessageLookupByLibrary.simpleMessage("Адрес электронной почты"),
+            MessageLookupByLibrary.simpleMessage("Электрондық поштаның адресі"),
+        "englishTeacher":
+            MessageLookupByLibrary.simpleMessage("Ағылшын тілі мұғалімі"),
         "enterEmailForAccount": MessageLookupByLibrary.simpleMessage(
-            "Введите адрес электронной почты, который вы используете для своей учетной записи"),
+            "Тіркелуіңіз үшін пайдаланатын электрондық поштаның адресін енгізіңіз"),
         "enterNewPassword":
-            MessageLookupByLibrary.simpleMessage("Введите новый пароль"),
-        "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Вы забыли свой пароль"),
-        "gradeBook": MessageLookupByLibrary.simpleMessage("айтшы"),
-        "groups": MessageLookupByLibrary.simpleMessage("Группы"),
-        "logIn": MessageLookupByLibrary.simpleMessage("Авторизоваться"),
-        "logInAcc": MessageLookupByLibrary.simpleMessage("Войти в аккаунт"),
-        "logOut": MessageLookupByLibrary.simpleMessage("Выйти"),
-        "next": MessageLookupByLibrary.simpleMessage("Следующий"),
-        "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+            MessageLookupByLibrary.simpleMessage("Жаңа құпия сөзді енгізіңіз"),
+        "enterYourEmailAddress": MessageLookupByLibrary.simpleMessage(
+            "Электрондық пошта адресіңізді енгізіңіз"),
+        "enterYourFirstName":
+            MessageLookupByLibrary.simpleMessage("Атыңызды енгізіңіз"),
+        "enterYourPatronymicName":
+            MessageLookupByLibrary.simpleMessage("Әкеңіздің атын енгізіңіз"),
+        "enterYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Телефон нөміріңізді енгізіңіз"),
+        "enterYourSecondName":
+            MessageLookupByLibrary.simpleMessage("Фамилияңызды енгізіңіз"),
+        "errorText": MessageLookupByLibrary.simpleMessage("Қате"),
+        "feedback": MessageLookupByLibrary.simpleMessage("Пікір"),
+        "filter": MessageLookupByLibrary.simpleMessage("Фильтр"),
+        "firstName": MessageLookupByLibrary.simpleMessage("Аты"),
+        "forgotPassword": MessageLookupByLibrary.simpleMessage(
+            "Құпия сөзіңізді ұмытып қалдыңыз"),
+        "friday": MessageLookupByLibrary.simpleMessage("Жұма"),
+        "gender": MessageLookupByLibrary.simpleMessage("Жынысы"),
+        "generalEnglish":
+            MessageLookupByLibrary.simpleMessage("Жалпы ағылшын тілі"),
+        "gradeBook": MessageLookupByLibrary.simpleMessage("Бағалар"),
+        "gradeBookGeneralEnglish": MessageLookupByLibrary.simpleMessage(
+            "Бағалар > Жалпы ағылшын тілі"),
+        "graded": MessageLookupByLibrary.simpleMessage("Бағаланды"),
+        "groups": MessageLookupByLibrary.simpleMessage("Группалар"),
+        "hereYouCanCreateYourResume": MessageLookupByLibrary.simpleMessage(
+            "Мұнда сіз резюмеңізді жасай аласыз"),
+        "hereYouCanManageYourAccount": MessageLookupByLibrary.simpleMessage(
+            "Мұнда сіз өз аккаунтыңызды басқара аласыз"),
+        "homeWork": MessageLookupByLibrary.simpleMessage("Үй жұмысы"),
+        "inclusiveTechnology":
+            MessageLookupByLibrary.simpleMessage("Инклюзивті технологиялар"),
+        "kazakhstanRussiaUSA":
+            MessageLookupByLibrary.simpleMessage("Казахстан, Россия, США"),
+        "language": MessageLookupByLibrary.simpleMessage("Тіл"),
+        "lastUpdateWas15January2023At0038":
+            MessageLookupByLibrary.simpleMessage(
+                "Соңғы жаңарту 2023 жылдың 15 қаңтарында 00:38-де болды"),
+        "lecture": MessageLookupByLibrary.simpleMessage("Лекция"),
+        "logIn": MessageLookupByLibrary.simpleMessage("Кіру"),
+        "logInAcc": MessageLookupByLibrary.simpleMessage("Аккаунтке кіру"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Шығу"),
+        "mainInformation":
+            MessageLookupByLibrary.simpleMessage("Негізгі ақпарат"),
+        "mark": MessageLookupByLibrary.simpleMessage("Баға"),
+        "maryJane": MessageLookupByLibrary.simpleMessage("Мэри Джейн"),
+        "material": MessageLookupByLibrary.simpleMessage("Материал"),
+        "monday": MessageLookupByLibrary.simpleMessage("Дүйсенбі"),
+        "myResumes": MessageLookupByLibrary.simpleMessage("Менің резюмелерім"),
+        "next": MessageLookupByLibrary.simpleMessage("Келесі"),
+        "notifications":
+            MessageLookupByLibrary.simpleMessage("Хабарландырулар"),
+        "outOf10": MessageLookupByLibrary.simpleMessage("10 нан"),
+        "password": MessageLookupByLibrary.simpleMessage("Құпия сөз"),
         "passwordRecovery":
-            MessageLookupByLibrary.simpleMessage("Восстановление пароля"),
-        "rememberPassword":
-            MessageLookupByLibrary.simpleMessage("Помните свой пароль"),
-        "resetPassword": MessageLookupByLibrary.simpleMessage("Сброс пароля"),
-        "saved": MessageLookupByLibrary.simpleMessage("Сохранено"),
-        "schedule": MessageLookupByLibrary.simpleMessage("Расписание"),
-        "secondCourses": MessageLookupByLibrary.simpleMessage("курс 2"),
-        "sendAgain": MessageLookupByLibrary.simpleMessage("Отправь снова"),
-        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+            MessageLookupByLibrary.simpleMessage("Құпия сөзді қалпына келтіру"),
+        "pastDue": MessageLookupByLibrary.simpleMessage("Мерзімі өтті"),
+        "patronymicName": MessageLookupByLibrary.simpleMessage("Әкесінің аты"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Телефон нөмір"),
+        "pleaseSelectALanguage":
+            MessageLookupByLibrary.simpleMessage("Тілді таңдаңыз"),
+        "present": MessageLookupByLibrary.simpleMessage("Қатысты"),
+        "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "quiz1": MessageLookupByLibrary.simpleMessage("Тест 1"),
+        "rememberPassword": MessageLookupByLibrary.simpleMessage(
+            "Құпия сөзіңізді есте сақтаңыз ба?"),
+        "resetPassword":
+            MessageLookupByLibrary.simpleMessage("Құпия сөзді қалпына келтіру"),
+        "resume": MessageLookupByLibrary.simpleMessage("Резюме"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Сенбі"),
+        "saveChanges":
+            MessageLookupByLibrary.simpleMessage("Өзгерістерді сақтау"),
+        "saved": MessageLookupByLibrary.simpleMessage("Сақталған"),
+        "schedule": MessageLookupByLibrary.simpleMessage("Кесте"),
+        "search": MessageLookupByLibrary.simpleMessage("Іздеу"),
+        "secondCourses": MessageLookupByLibrary.simpleMessage("Басқа курстар"),
+        "secondName": MessageLookupByLibrary.simpleMessage("Тегі"),
+        "selectSystemFeaturesForPeopleWithDisabilities":
+            MessageLookupByLibrary.simpleMessage(
+                "Мүмкіндігі шектеулі адамдарға арналған жүйе мүмкіндіктерін таңдаңыз"),
+        "sendAgain": MessageLookupByLibrary.simpleMessage("Қайта жіберіңіз"),
+        "settings": MessageLookupByLibrary.simpleMessage("Параметрлер"),
+        "somethingError":
+            MessageLookupByLibrary.simpleMessage("Қате орын алды"),
+        "status": MessageLookupByLibrary.simpleMessage("Статус"),
+        "street": MessageLookupByLibrary.simpleMessage("Көше"),
+        "student": MessageLookupByLibrary.simpleMessage("Студент"),
+        "subCourse": MessageLookupByLibrary.simpleMessage("Қосымша курс"),
+        "submitted": MessageLookupByLibrary.simpleMessage("Жіберілді"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Жексенбі"),
+        "teacherAlanAlexander":
+            MessageLookupByLibrary.simpleMessage("Мұғалім: Алан Александр"),
+        "thursday": MessageLookupByLibrary.simpleMessage("Бейсенбі"),
+        "totalScore": MessageLookupByLibrary.simpleMessage("Жалпы рейтинг"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Сейсенбі"),
+        "unOpened": MessageLookupByLibrary.simpleMessage("Қаралмады"),
+        "uploadPhoto": MessageLookupByLibrary.simpleMessage("Суретті жүктеңіз"),
+        "userInformation":
+            MessageLookupByLibrary.simpleMessage("Пайдаланушы ақпараты"),
         "verificationCode":
-            MessageLookupByLibrary.simpleMessage("Проверочный код"),
+            MessageLookupByLibrary.simpleMessage("Тексеру коды"),
         "verificationCodeByEmail": MessageLookupByLibrary.simpleMessage(
-            "Мы отправили вам код подтверждения по электронной почте")
+            "Сізге электрондық поштаға растау кодын жібердік"),
+        "versionForPeopleWithDisabilities":
+            MessageLookupByLibrary.simpleMessage(
+                "Мүмкіндігі шектеулі адамдарға арналған нұсқа"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Сәрсенбі"),
+        "week1": MessageLookupByLibrary.simpleMessage("1-апта")
       };
 }

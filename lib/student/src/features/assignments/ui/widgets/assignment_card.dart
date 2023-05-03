@@ -6,6 +6,7 @@ import '../../../../../../constants/app_assets.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/course_container.dart';
+import '../../../localization/generated/l10n.dart';
 
 class AssignmentsCard extends StatelessWidget {
   const AssignmentsCard({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class AssignmentsCard extends StatelessWidget {
                       style: AppStyles.s15w500,
                     ),
                     Text(
-                      'Course: General English',
+                      S.of(context).courseGeneralEnglish,
                       style: AppStyles.s14w400.copyWith(
                         color: AppColors.gray600,
                       ),
@@ -50,7 +51,7 @@ class AssignmentsCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  'Due April 24, 2023 23:59',
+                  S.of(context).dueApril2420232359,
                   style: AppStyles.s14w500.copyWith(
                     color: AppColors.gray600,
                   ),

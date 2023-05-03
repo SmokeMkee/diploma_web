@@ -2,6 +2,8 @@ import 'package:diploma_web/constants/app_colors.dart';
 import 'package:diploma_web/constants/app_styles.dart';
 import 'package:flutter/material.dart';
 
+import '../../localization/generated/l10n.dart';
+
 class NotificationSettings extends StatelessWidget {
   const NotificationSettings({Key? key}) : super(key: key);
 
@@ -51,13 +53,13 @@ class NotificationTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Assignments',
+                     Text(
+                      S.of(context).additionalFeatures,
                       style: AppStyles.s15w500,
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      'Select the types of notifications you will receive.',
+                      S.of(context).additionalFeaturesToHelpYouPerceiveInformationBetter,
                       style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
                     ),
                   ],
@@ -76,7 +78,7 @@ class NotificationTile extends StatelessWidget {
                       horizontal: 32,
                     ),
                     child: Text(
-                      'Change',
+                      S.of(context).change,
                       style: AppStyles.s15w500.copyWith(
                         color: AppColors.gray900,
                       ),

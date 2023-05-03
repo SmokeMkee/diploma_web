@@ -17,10 +17,10 @@ class GradeBookScreen extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: const PreferredSize(
+          appBar: PreferredSize(
             preferredSize: Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'gradebook',
+              title: S.of(context).gradeBook,
             ),
           ),
           backgroundColor: Colors.transparent,

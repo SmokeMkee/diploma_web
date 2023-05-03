@@ -7,6 +7,7 @@ import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_back_button.dart';
 import '../../../widgets/app_drop_down_button.dart';
 import '../../../widgets/disabilities_button.dart';
+import '../../localization/generated/l10n.dart';
 import '../../navigation/app_router/app_router.dart';
 import '../ui/widget/body.dart';
 
@@ -43,8 +44,11 @@ class CreateResume extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: Container(
-                        padding: const EdgeInsets.only(left: 79, top: 57, right: 78, bottom: 35),
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                        padding: const EdgeInsets.only(
+                            left: 79, top: 57, right: 78, bottom: 35),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
@@ -64,6 +68,7 @@ class CreateResume extends StatelessWidget {
     );
   }
 }
+
 class MoreInformation extends StatelessWidget {
   const MoreInformation({Key? key}) : super(key: key);
 
@@ -74,7 +79,10 @@ class MoreInformation extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 76),
-        const Text('Main information' , style: AppStyles.s15w500,),
+        Text(
+          S.of(context).mainInformation,
+          style: AppStyles.s15w500,
+        ),
         const SizedBox(height: 14),
         Row(
           children: [
@@ -82,16 +90,19 @@ class MoreInformation extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                   Expanded(
+                  Expanded(
                     child: ProfileTile(
-                      label: 'Date of Birth',
-                      hintText: 'XX / XX / XXXX', controller: controller,
+                      label: S.of(context).dateOfBirth,
+                      hintText: 'XX / XX / XXXX',
+                      controller: controller,
                     ),
                   ),
                   const SizedBox(width: 20),
                   Container(
                     padding: const EdgeInsets.all(15.5),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: AppColors.accent),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: AppColors.accent),
                     child: SvgPicture.asset(
                       AppAssets.svg.scheduleBold,
                       color: AppColors.white,
@@ -104,70 +115,67 @@ class MoreInformation extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text('Gender', style: AppStyles.s15w500),
+                children: [
+                  Text(S.of(context).gender, style: AppStyles.s15w500),
                   AppDropDownButton(
                     items: [
                       DropdownMenuItem(
-                        value: 'Almaty',
+                        value: S.of(context).almaty,
                         child: Text(
-                          'Almaty',
-                          style: TextStyle(
+                          S.of(context).almaty,
+                          style: const TextStyle(
                             fontSize: 15,
                             color: Colors.black45,
                           ),
                         ),
                       ),
                       DropdownMenuItem(
-                        value: 'almaty',
+                        value: S.of(context).almaty,
                         child: Text(
-                          'Almaty',
-                          style: TextStyle(
+                          S.of(context).almaty,
+                          style: const TextStyle(
                             fontSize: 15,
                             color: Colors.black45,
                           ),
                         ),
                       ),
                     ],
-                    initial: 'Almaty',
+                    initial: S.of(context).almaty,
                   ),
                 ],
               ),
             ),
-
-
-
           ],
         ),
         const SizedBox(height: 14),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Citizenship', style: AppStyles.s15w500),
+          children: [
+            Text(S.of(context).citizenship, style: AppStyles.s15w500),
             AppDropDownButton(
               items: [
                 DropdownMenuItem(
-                  value: 'Kazakhstan, Russia, USA',
+                  value: S.of(context).kazakhstanRussiaUSA,
                   child: Text(
-                    'Kazakhstan, Russia, USA',
-                    style: TextStyle(
+                    S.of(context).kazakhstanRussiaUSA,
+                    style: const TextStyle(
                       fontSize: 15,
                       color: Colors.black45,
                     ),
                   ),
                 ),
                 DropdownMenuItem(
-                  value: 'almaty',
+                  value: S.of(context).almaty,
                   child: Text(
-                    'Almaty',
-                    style: TextStyle(
+                    S.of(context).almaty,
+                    style: const TextStyle(
                       fontSize: 15,
                       color: Colors.black45,
                     ),
                   ),
                 ),
               ],
-              initial: 'Almaty',
+              initial: S.of(context).almaty,
             ),
           ],
         ),
@@ -175,8 +183,6 @@ class MoreInformation extends StatelessWidget {
     );
   }
 }
-
-
 
 class ContactDetails extends StatelessWidget {
   const ContactDetails({Key? key}) : super(key: key);
@@ -188,18 +194,30 @@ class ContactDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Contact details', style: AppStyles.s15w500),
+        Text(S.of(context).contactDetails, style: AppStyles.s15w500),
         Row(
           children: [
             Expanded(
               flex: 4,
               child: Column(
-                children:  [
-                  ProfileTile(label: 'First name', hintText: 'first name', controller: controller,),
-                  SizedBox(height: 14),
-                  ProfileTile(label: 'Second name', hintText: 'second name', controller: controller,),
-                  SizedBox(height: 14),
-                  ProfileTile(label: 'Patronymic name', hintText: 'patronymic name', controller: controller,),
+                children: [
+                  ProfileTile(
+                    label: S.of(context).firstName,
+                    hintText: S.of(context).firstName,
+                    controller: controller,
+                  ),
+                  const SizedBox(height: 14),
+                  ProfileTile(
+                    label: S.of(context).secondName,
+                    hintText: S.of(context).secondName,
+                    controller: controller,
+                  ),
+                  const SizedBox(height: 14),
+                  ProfileTile(
+                    label: S.of(context).patronymicName,
+                    hintText: S.of(context).patronymicName,
+                    controller: controller,
+                  ),
                 ],
               ),
             ),
@@ -209,37 +227,42 @@ class ContactDetails extends StatelessWidget {
         ),
         Row(
           children: [
-             Expanded(child: ProfileTile(label: 'Patronymic name', hintText: 'patronymic name', controller: controller,)),
+            Expanded(
+                child: ProfileTile(
+              label: S.of(context).patronymicName,
+              hintText: S.of(context).patronymicName,
+              controller: controller,
+            )),
             const SizedBox(width: 22),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text('Gender', style: AppStyles.s15w500),
+                children: [
+                  Text(S.of(context).gender, style: AppStyles.s15w500),
                   AppDropDownButton(
                     items: [
                       DropdownMenuItem(
-                        value: 'Almaty',
+                        value: S.of(context).almaty,
                         child: Text(
-                          'Almaty',
-                          style: TextStyle(
+                          S.of(context).almaty,
+                          style: const TextStyle(
                             fontSize: 15,
                             color: Colors.black45,
                           ),
                         ),
                       ),
                       DropdownMenuItem(
-                        value: 'almaty',
+                        value: S.of(context).almaty,
                         child: Text(
-                          'Almaty',
-                          style: TextStyle(
+                          S.of(context).almaty,
+                          style: const TextStyle(
                             fontSize: 15,
                             color: Colors.black45,
                           ),
                         ),
                       ),
                     ],
-                    initial: 'Almaty',
+                    initial: S.of(context).almaty,
                   ),
                 ],
               ),
@@ -250,8 +273,6 @@ class ContactDetails extends StatelessWidget {
     );
   }
 }
-
-
 
 class PhotoCreateResume extends StatelessWidget {
   const PhotoCreateResume({Key? key}) : super(key: key);
@@ -271,13 +292,13 @@ class PhotoCreateResume extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Mary Jane',
+            Text(
+              S.of(context).maryJane,
               style: AppStyles.s18w500,
             ),
             const SizedBox(height: 6),
             Text(
-              'Student',
+              S.of(context).student,
               style: AppStyles.s15w400.copyWith(color: AppColors.gray600),
             ),
             const SizedBox(height: 16),
@@ -295,8 +316,9 @@ class PhotoCreateResume extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: Text(
-                        'Upload photo',
-                        style: AppStyles.s15w500.copyWith(color: AppColors.white),
+                        S.of(context).uploadPhoto,
+                        style:
+                            AppStyles.s15w500.copyWith(color: AppColors.white),
                       ),
                     ),
                   ),

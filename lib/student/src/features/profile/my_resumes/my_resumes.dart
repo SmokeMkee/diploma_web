@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../widgets/app_back_button.dart';
+import '../../localization/generated/l10n.dart';
 import '../../navigation/app_router/app_router.dart';
 import '../ui/profile_screen.dart';
 
@@ -53,9 +54,10 @@ class MyResumes extends StatelessWidget {
                     ),
                   ),
                   label: Padding(
-                    padding: const EdgeInsets.only(left: 16, top: 14, bottom: 14, right: 20),
+                    padding: const EdgeInsets.only(
+                        left: 16, top: 14, bottom: 14, right: 20),
                     child: Text(
-                      'Create resume',
+                      S.of(context).createResume,
                       style: AppStyles.s15w500.copyWith(color: AppColors.white),
                     ),
                   ),
@@ -63,8 +65,8 @@ class MyResumes extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 31),
-            const Text(
-              'My resumes',
+            Text(
+              S.of(context).myResumes,
               style: AppStyles.s15w500,
             ),
             const SizedBox(height: 15),
@@ -96,7 +98,8 @@ class ResumeCard extends StatelessWidget {
         ),
         elevation: 5,
         child: Padding(
-          padding: const EdgeInsets.only(left: 30, top: 20, bottom: 25, right: 30),
+          padding:
+              const EdgeInsets.only(left: 30, top: 20, bottom: 25, right: 30),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,12 +107,12 @@ class ResumeCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'English teacher',
+                  Text(
+                    S.of(context).englishTeacher,
                     style: AppStyles.s15w500,
                   ),
                   Text(
-                    'Last update was 15 January 2023 at 00:38',
+                    S.of(context).lastUpdateWas15January2023At0038,
                     style: AppStyles.s11w400.copyWith(color: AppColors.gray600),
                   ),
                 ],

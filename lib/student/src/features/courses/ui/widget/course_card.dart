@@ -6,6 +6,7 @@ import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/course_container.dart';
 import '../../data/dto/courses.dart';
+import '../../../localization/generated/l10n.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({Key? key, required this.courses}) : super(key: key);
@@ -20,7 +21,7 @@ class CourseCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(31, 27, 22, 30),
+          padding: const EdgeInsets.fromLTRB(31, 27, 22, 62),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

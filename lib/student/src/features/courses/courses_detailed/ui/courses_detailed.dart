@@ -7,6 +7,7 @@ import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/course_container.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../profile/ui/profile_screen.dart';
 
@@ -18,10 +19,10 @@ class CoursesDetailed extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'Courses > General English',
+            title: S.of(context).coursesGeneralEnglish,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -45,12 +46,12 @@ class CoursesDetailed extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'General English',
+                        Text(
+                          S.of(context).generalEnglish,
                           style: AppStyles.s15w500,
                         ),
                         Text(
-                          'Teacher: Alan Alexander',
+                          S.of(context).teacherAlanAlexander,
                           style: AppStyles.s14w400.copyWith(
                             color: AppColors.gray600,
                           ),
@@ -66,7 +67,8 @@ class CoursesDetailed extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (context, int index) {
                   return GestureDetector(
-                      onTap: () => context.router.navigate(const CoursesDetailedLessonRoute()),
+                      onTap: () => context.router
+                          .navigate(const CoursesDetailedLessonRoute()),
                       child: const CoursesDetailedCard());
                 },
                 itemCount: 5,
@@ -110,9 +112,9 @@ class CoursesDetailedCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Week 1',
+                  S.of(context).week1,
                   style: AppStyles.s18w500,
                 ),
               ),

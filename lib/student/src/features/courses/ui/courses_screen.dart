@@ -8,6 +8,7 @@ import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_filter_buttun.dart';
 import '../../../widgets/app_text_form_field.dart';
+import '../../localization/generated/l10n.dart';
 import '../../navigation/app_router/app_router.dart';
 import '../../profile/ui/profile_screen.dart';
 import '../data/bloc/courses_bloc.dart';
@@ -20,10 +21,10 @@ class CoursesScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'Courses',
+            title: S.of(context).courses,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -37,6 +38,11 @@ class CoursesScreen extends StatelessWidget {
                 children: [
                   const SearchWidget(),
                   const SizedBox(height: 53),
+                  Text(
+                    S.of(context).allCourses,
+                    style: AppStyles.s15w500.copyWith(color: AppColors.accent),
+                  ),
+                  const SizedBox(height: 8),
                   const Divider(
                     height: 4,
                     thickness: 2,
@@ -95,7 +101,7 @@ class SearchWidget extends StatelessWidget {
         SizedBox(
           width: 350,
           child: AppTextFormField(
-            hintText: 'search',
+            hintText: S.of(context).search,
             hintStyle: AppStyles.s14w500.copyWith(color: AppColors.gray400),
             prefixIcon: Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),

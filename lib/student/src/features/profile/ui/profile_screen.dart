@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../widgets/disabilities_button.dart';
+import '../../localization/generated/l10n.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -29,10 +30,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'Profile',
+            title: S.of(context).profile,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -42,8 +43,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is ProfileError) {
-              return const Center(
-                child: Text('something error'),
+              return Center(
+                child: Text(S.of(context).somethingError),
               );
             }
             if (state is ProfileData) {

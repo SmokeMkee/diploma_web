@@ -7,6 +7,7 @@ import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/course_container.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../profile/ui/profile_screen.dart';
 
@@ -20,10 +21,10 @@ class GradeBookDetailed extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
         child: Scaffold(
-          appBar: const PreferredSize(
+          appBar: PreferredSize(
             preferredSize: Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'gradebook > general english',
+              title: S.of(context).gradeBookGeneralEnglish,
             ),
           ),
           backgroundColor: Colors.transparent,
@@ -47,12 +48,12 @@ class GradeBookDetailed extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'General English',
+                          Text(
+                            S.of(context).generalEnglish,
                             style: AppStyles.s15w500,
                           ),
                           Text(
-                            'Teacher: Alan Alexander',
+                            S.of(context).teacherAlanAlexander,
                             style: AppStyles.s14w400.copyWith(
                               color: AppColors.gray600,
                             ),
@@ -62,13 +63,13 @@ class GradeBookDetailed extends StatelessWidget {
                     ],
                   ),
                   Column(
-                    children: const [
+                    children: [
                       PerformanceTile(
-                        title: 'Total score',
+                        title: S.of(context).totalScore,
                         titleValue: '97.65%',
                       ),
                       PerformanceTile(
-                        title: 'Attendance',
+                        title: S.of(context).attendance,
                         titleValue: '97.65%',
                       ),
                     ],
@@ -184,97 +185,97 @@ class GradesTableWidget extends StatelessWidget {
         data: [
           TableInfo(
             assignments: 'Classwork_1',
-            status: 'Submitted',
+            status: S.of(context).submitted,
             feedback: false,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Homework',
-            status: 'Graded',
+            status: S.of(context).graded,
             feedback: true,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Task2',
-            status: 'Submitted',
+            status: S.of(context).submitted,
             feedback: false,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Quiz',
-            status: 'Past due',
+            status: S.of(context).pastDue,
             feedback: true,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Classwork_1',
-            status: 'Submitted',
+            status: S.of(context).submitted,
             feedback: false,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Homework',
-            status: 'Graded',
+            status: S.of(context).graded,
             feedback: true,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Task2',
-            status: 'Submitted',
+            status: S.of(context).submitted,
             feedback: false,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Quiz',
-            status: 'Past due',
+            status: S.of(context).pastDue,
             feedback: true,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Classwork_1',
-            status: 'Submitted',
+            status: S.of(context).submitted,
             feedback: false,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Homework',
-            status: 'Graded',
+            status: S.of(context).graded,
             feedback: true,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Task2',
-            status: 'Submitted',
+            status: S.of(context).submitted,
             feedback: false,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Quiz',
-            status: 'Past due',
+            status: S.of(context).pastDue,
             feedback: true,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Classwork_1',
-            status: 'Submitted',
+            status: S.of(context).submitted,
             feedback: false,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Homework',
-            status: 'Graded',
+            status: S.of(context).graded,
             feedback: true,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Task2',
-            status: 'Submitted',
+            status: S.of(context).submitted,
             feedback: false,
             mark: '-',
           ),
           TableInfo(
             assignments: 'Quiz',
-            status: 'Past due',
+            status: S.of(context).pastDue,
             feedback: true,
             mark: '-',
           ),
@@ -348,12 +349,12 @@ class TableBody extends StatelessWidget {
               3: FlexColumnWidth(1),
             },
             children: [
-              const TableRow(
+               TableRow(
                 children: [
-                  HeaderTableText(text: 'Assignments'),
-                  HeaderTableText(text: 'Status'),
-                  HeaderTableText(text: 'Mark'),
-                  HeaderTableText(text: 'Feedback'),
+                  HeaderTableText(text: S.of(context).assignments),
+                  HeaderTableText(text: S.of(context).status),
+                  HeaderTableText(text: S.of(context).mark),
+                  HeaderTableText(text: S.of(context).feedback),
                 ],
               ),
               ...data.map(

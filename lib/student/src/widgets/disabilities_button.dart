@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/app_colors.dart';
+import '../features/localization/generated/l10n.dart';
 
 
 class DisabilitiesButton extends StatelessWidget {
@@ -24,8 +25,8 @@ class DisabilitiesButton extends StatelessWidget {
             color: AppColors.primary,
           ),
           const SizedBox(width: 16),
-          const Text(
-            'Version for people with disabilities',
+          Text(
+            S.of(context).versionForPeopleWithDisabilities,
             style: AppStyles.s14w500,
           )
         ],

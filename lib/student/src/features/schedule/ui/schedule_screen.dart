@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
+import '../../localization/generated/l10n.dart';
 import '../../profile/ui/profile_screen.dart';
 
 class ScheduleScreen extends StatelessWidget {
@@ -15,10 +16,10 @@ class ScheduleScreen extends StatelessWidget {
       child: DefaultTabController(
         length: 7,
         child: Scaffold(
-          appBar: const PreferredSize(
+          appBar: PreferredSize(
             preferredSize: Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'schedule',
+              title: S.of(context).schedule,
             ),
           ),
           backgroundColor: Colors.transparent,
@@ -32,27 +33,27 @@ class ScheduleScreen extends StatelessWidget {
                 indicatorColor: AppColors.accent,
                 labelColor: AppColors.accent,
                 labelStyle: AppStyles.s15w500.copyWith(color: AppColors.accent),
-                tabs: const [
+                tabs: [
                   Tab(
-                    text: 'Monday',
+                    text: S.of(context).monday,
                   ),
                   Tab(
-                    text: 'Tuesday',
+                    text: S.of(context).tuesday,
                   ),
                   Tab(
-                    text: 'Wednesday',
+                    text: S.of(context).wednesday,
                   ),
                   Tab(
-                    text: 'Thursday',
+                    text: S.of(context).thursday,
                   ),
                   Tab(
-                    text: 'Friday',
+                    text: S.of(context).friday,
                   ),
                   Tab(
-                    text: 'Saturday',
+                    text: S.of(context).saturday,
                   ),
                   Tab(
-                    text: 'Sunday',
+                    text: S.of(context).sunday,
                   ),
                 ],
               ),
@@ -131,12 +132,12 @@ class HeaderBody extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'April 12, 2023',
+             Text(
+              S.of(context).april122023,
               style: AppStyles.s18w500,
             ),
             Text(
-              'Wednesday',
+              S.of(context).wednesday,
               style: AppStyles.s15w400.copyWith(
                 color: AppColors.gray600,
               ),
@@ -146,28 +147,28 @@ class HeaderBody extends StatelessWidget {
         Row(
           children: [
             Row(
-              children: const [
-                CircleAvatar(
+              children: [
+                const CircleAvatar(
                   radius: 5,
                   backgroundColor: AppColors.error,
                 ),
                 SizedBox(width: 9),
                 Text(
-                  'Absent',
+                  S.of(context).absent,
                   style: AppStyles.s15w500,
                 )
               ],
             ),
             const SizedBox(width: 42),
             Row(
-              children: const [
-                CircleAvatar(
+              children: [
+                const CircleAvatar(
                   radius: 5,
                   backgroundColor: AppColors.success,
                 ),
                 SizedBox(width: 9),
                 Text(
-                  'Present',
+                  S.of(context).present,
                   style: AppStyles.s15w500,
                 )
               ],

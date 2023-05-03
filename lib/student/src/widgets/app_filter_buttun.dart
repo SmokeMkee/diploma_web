@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../constants/app_assets.dart';
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_styles.dart';
+import '../features/localization/generated/l10n.dart';
 
 
 
@@ -23,7 +24,7 @@ class AppFilterButton extends StatelessWidget {
       ),
       onPressed: () {},
       label: Text(
-        'Filter',
+        S.of(context).filter,
         style: AppStyles.s14w500.copyWith(color: AppColors.gray400),
       ),
       icon: SvgPicture.asset(
