@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 import '../../../../../../constants/app_assets.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
@@ -9,7 +8,15 @@ import '../../../../widgets/course_container.dart';
 import '../../../localization/generated/l10n.dart';
 
 class AssignmentsCard extends StatelessWidget {
-  const AssignmentsCard({Key? key}) : super(key: key);
+  const AssignmentsCard(
+      {Key? key,
+      required this.courseName,
+      required this.title,
+      required this.date})
+      : super(key: key);
+  final String courseName;
+  final String title;
+  final String date;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +36,12 @@ class AssignmentsCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Homework_1',
+                    Text(
+                      title,
                       style: AppStyles.s15w500,
                     ),
                     Text(
-                      S.of(context).courseGeneralEnglish,
+                      courseName,
                       style: AppStyles.s14w400.copyWith(
                         color: AppColors.gray600,
                       ),
@@ -51,7 +58,7 @@ class AssignmentsCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  S.of(context).dueApril2420232359,
+                  date,
                   style: AppStyles.s14w500.copyWith(
                     color: AppColors.gray600,
                   ),

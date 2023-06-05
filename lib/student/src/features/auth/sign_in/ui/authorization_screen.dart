@@ -128,7 +128,6 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
           navigationButtonText: S.of(context).resetPassword,
           elevatedButtonOnTap: () {
             if (formKey.currentState?.validate() ?? false == true) {
-              errorAuth = '';
               context.read<AuthBloc>().add(
                 SignInEvent(
                   password: controller.text.trim(),

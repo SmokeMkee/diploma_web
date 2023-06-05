@@ -7,6 +7,8 @@ class _Images {
   const _Images();
 
   final String logo = 'assets/images/logo.png';
+  final String emptyAssignments = 'assets/images/assignments.png';
+  final String emptyCourses = 'assets/images/courses.png';
 }
 
 class _Svg {
@@ -52,5 +54,7 @@ class _Svg {
   final String downloadBold = 'assets/svg/download_bold.svg';
   final String add = 'assets/svg/add.svg';
   final String addCircleBold = 'assets/svg/add_circle_bold.svg';
+  final String time = 'assets/svg/time.svg';
+  final String lightBulb = 'assets/svg/light_bulb.svg';
 
 }

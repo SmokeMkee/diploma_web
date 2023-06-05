@@ -1,5 +1,6 @@
 import 'package:diploma_web/constants/app_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -10,9 +11,32 @@ import '../../../../widgets/course_container.dart';
 import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../profile/ui/profile_screen.dart';
+import '../data/bloc/gradebook_detailed_bloc.dart';
+import '../data/dto/dto_gradebook.dart';
 
-class GradeBookDetailed extends StatelessWidget {
-  const GradeBookDetailed({Key? key}) : super(key: key);
+class GradeBookDetailed extends StatefulWidget {
+  const GradeBookDetailed(
+      {Key? key,
+      required this.courseId,
+      required this.teacherName,
+      required this.courseName})
+      : super(key: key);
+  final int courseId;
+  final String teacherName;
+  final String courseName;
+
+  @override
+  State<GradeBookDetailed> createState() => _GradeBookDetailedState();
+}
+
+class _GradeBookDetailedState extends State<GradeBookDetailed> {
+  @override
+  void initState() {
+    context
+        .read<GradebookDetailedBloc>()
+        .add(FetchGradebookEvent(courseId: widget.courseId));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +46,9 @@ class GradeBookDetailed extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size(double.infinity, 200),
+            preferredSize: const Size(double.infinity, 200),
             child: HeaderWidget(
-              title: S.of(context).gradeBookGeneralEnglish,
+              title: widget.courseName,
             ),
           ),
           backgroundColor: Colors.transparent,
@@ -38,7 +62,8 @@ class GradeBookDetailed extends StatelessWidget {
                     children: [
                       AppBackButton(
                         onTap: () {
-                          context.router.popAndPush(const GradeBookScreenRoute());
+                          context.router
+                              .popAndPush(const GradeBookScreenRoute());
                         },
                       ),
                       const SizedBox(width: 34),
@@ -49,11 +74,11 @@ class GradeBookDetailed extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            S.of(context).generalEnglish,
+                            widget.courseName,
                             style: AppStyles.s15w500,
                           ),
                           Text(
-                            S.of(context).teacherAlanAlexander,
+                            widget.teacherName,
                             style: AppStyles.s14w400.copyWith(
                               color: AppColors.gray600,
                             ),
@@ -62,24 +87,43 @@ class GradeBookDetailed extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      PerformanceTile(
-                        title: S.of(context).totalScore,
-                        titleValue: '97.65%',
-                      ),
-                      PerformanceTile(
-                        title: S.of(context).attendance,
-                        titleValue: '97.65%',
-                      ),
-                    ],
-                  )
+                  BlocBuilder<GradebookDetailedBloc, GradebookDetailedState>(
+                    builder: (context, state) {
+                      if (state is GradebookDetailedData) {
+                        return PerformanceTile(
+                          title: S.of(context).totalScore,
+                          titleValue: '${state.listGradeBook.total} % ',
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
                 ],
               ),
               const SizedBox(height: 55),
               const SizedBox(height: 21),
-              const Expanded(
-                child: GradesTableWidget(),
+              Expanded(
+                child:
+                    BlocBuilder<GradebookDetailedBloc, GradebookDetailedState>(
+                  builder: (context, state) {
+                    if (state is GradebookDetailedData) {
+                      return GradesTableWidget(
+                        list: state.listGradeBook,
+                      );
+                    }
+                    if (state is GradebookDetailedLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (state is GradebookDetailedError) {
+                      return Center(
+                        child: Text(state.message),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
               )
             ],
           ),
@@ -89,196 +133,24 @@ class GradeBookDetailed extends StatelessWidget {
   }
 }
 
-class TableCalendars extends StatefulWidget {
-  const TableCalendars({Key? key}) : super(key: key);
-
-  @override
-  State<TableCalendars> createState() => _TableCalendarsState();
-}
-
-class _TableCalendarsState extends State<TableCalendars> {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: TableCalendar(
-        rowHeight: 90,
-        firstDay: DateTime.utc(2010, 10, 20),
-        lastDay: DateTime.utc(2040, 10, 20),
-        focusedDay: DateTime.now(),
-        headerVisible: true,
-        daysOfWeekVisible: true,
-        sixWeekMonthsEnforced: false,
-        shouldFillViewport: false,
-
-        eventLoader: (day){
-          if (day.day == 3) {
-            return ['Lesson 1'];
-          }
-          if (day.day == 5) {
-            return ['Lesson 2'];
-          }
-          if (day.day == 7) {
-            return ['Lesson 3'];
-          }
-          if (day.day == 10) {
-            return ['Lesson 4'];
-          }
-          if (day.day == 12) {
-            return ['Lesson 5'];
-          }
-          if (day.day == 14) {
-            return ['Lesson 6'];
-          }
-          if (day.day == 17) {
-            return ['Lesson 7'];
-          }
-          return [];
-        },
-
-        calendarStyle: const CalendarStyle(
-          markerSizeScale: 1,
-          markerMargin: EdgeInsets.zero,
-          markerDecoration: BoxDecoration(
-            color: AppColors.primary,
-            shape: BoxShape.rectangle,
-          ),
-            rangeStartDecoration : BoxDecoration(
-                color: AppColors.audioLine
-            ),
-            defaultDecoration:BoxDecoration(
-                color: AppColors.audioLine
-            ),
-            cellMargin : EdgeInsets.zero,
-          tableBorder: TableBorder(
-            top: BorderSide(color: AppColors.gray200),
-            left: BorderSide(color: AppColors.gray200),
-            right: BorderSide(color: AppColors.gray200),
-            bottom: BorderSide(color: AppColors.gray200),
-            verticalInside: BorderSide(
-              width: 1,
-              color: AppColors.gray200,
-              style: BorderStyle.solid,
-            ),
-            horizontalInside: BorderSide(
-              width: 1,
-              color: AppColors.gray200,
-              style: BorderStyle.solid,
-            ),
-          ),
-          todayDecoration: BoxDecoration(
-            color: AppColors.audioLine
-          )
-
-        ),
-      ),
-    );
-  }
-}
-
 class GradesTableWidget extends StatelessWidget {
-  const GradesTableWidget({Key? key}) : super(key: key);
+  const GradesTableWidget({Key? key, required this.list}) : super(key: key);
+  final GradeBook list;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: TableBody(
         data: [
-          TableInfo(
-            assignments: 'Classwork_1',
-            status: S.of(context).submitted,
-            feedback: false,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Homework',
-            status: S.of(context).graded,
-            feedback: true,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Task2',
-            status: S.of(context).submitted,
-            feedback: false,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Quiz',
-            status: S.of(context).pastDue,
-            feedback: true,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Classwork_1',
-            status: S.of(context).submitted,
-            feedback: false,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Homework',
-            status: S.of(context).graded,
-            feedback: true,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Task2',
-            status: S.of(context).submitted,
-            feedback: false,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Quiz',
-            status: S.of(context).pastDue,
-            feedback: true,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Classwork_1',
-            status: S.of(context).submitted,
-            feedback: false,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Homework',
-            status: S.of(context).graded,
-            feedback: true,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Task2',
-            status: S.of(context).submitted,
-            feedback: false,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Quiz',
-            status: S.of(context).pastDue,
-            feedback: true,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Classwork_1',
-            status: S.of(context).submitted,
-            feedback: false,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Homework',
-            status: S.of(context).graded,
-            feedback: true,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Task2',
-            status: S.of(context).submitted,
-            feedback: false,
-            mark: '-',
-          ),
-          TableInfo(
-            assignments: 'Quiz',
-            status: S.of(context).pastDue,
-            feedback: true,
-            mark: '-',
-          ),
+          ...List.generate(
+            list.studentGradeBookDtoList?.length ?? 0,
+            (index) => TableInfo(
+              assignments:
+                  list.studentGradeBookDtoList?[index].sectionName ?? 'no info',
+              status: 'status',
+              mark: list.studentGradeBookDtoList?[index].grade ?? 'no info',
+            ),
+          )
         ],
       ),
     );
@@ -346,15 +218,13 @@ class TableBody extends StatelessWidget {
               0: FlexColumnWidth(3),
               1: FlexColumnWidth(1),
               2: FlexColumnWidth(1),
-              3: FlexColumnWidth(1),
             },
             children: [
-               TableRow(
+              TableRow(
                 children: [
                   HeaderTableText(text: S.of(context).assignments),
                   HeaderTableText(text: S.of(context).status),
                   HeaderTableText(text: S.of(context).mark),
-                  HeaderTableText(text: S.of(context).feedback),
                 ],
               ),
               ...data.map(
@@ -369,11 +239,6 @@ class TableBody extends StatelessWidget {
                       ),
                       TableCell(
                         child: BodyTableText(text: e.mark),
-                      ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child:
-                            e.feedback == true ? SvgPicture.asset(AppAssets.svg.feedback) : const SizedBox.shrink(),
                       ),
                     ],
                   );
@@ -391,18 +256,18 @@ class TableInfo {
   TableInfo({
     required this.assignments,
     required this.status,
-    required this.feedback,
     required this.mark,
   });
 
   final String assignments;
   final String status;
   final String mark;
-  final bool feedback;
 }
 
 class PerformanceTile extends StatelessWidget {
-  const PerformanceTile({Key? key, required this.title, required this.titleValue}) : super(key: key);
+  const PerformanceTile(
+      {Key? key, required this.title, required this.titleValue})
+      : super(key: key);
   final String title;
   final String titleValue;
 

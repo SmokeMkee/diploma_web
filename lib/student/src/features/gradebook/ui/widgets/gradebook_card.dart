@@ -6,8 +6,9 @@ import '../../../../widgets/course_container.dart';
 import '../../../localization/generated/l10n.dart';
 
 class GradeBookCard extends StatelessWidget {
-  const GradeBookCard({Key? key}) : super(key: key);
-
+  const GradeBookCard({Key? key, required this.courseName, required this.teacherName}) : super(key: key);
+  final String courseName;
+  final String teacherName;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,11 +34,11 @@ class GradeBookCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        S.of(context).generalEnglish,
+                        courseName,
                         style: AppStyles.s15w500,
                       ),
                       Text(
-                        S.of(context).teacherAlanAlexander,
+                        teacherName,
                         style: AppStyles.s14w400.copyWith(
                           color: AppColors.gray600,
                         ),

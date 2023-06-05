@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size(double.infinity, 200),
+          preferredSize: const Size(double.infinity, 200),
           child: HeaderWidget(
             title: S.of(context).profile,
           ),
@@ -59,8 +59,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(width: 100),
-                  const Expanded(
-                    child: LeftSideBar(),
+                   Expanded(
+                    child: LeftSideBar(userName: '${state.data.name ?? 'Username'} ${state.data.surname ?? ''}',),
                   ),
                 ],
               );

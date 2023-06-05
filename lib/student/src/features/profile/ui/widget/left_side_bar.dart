@@ -10,15 +10,18 @@ import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 
 class LeftSideBar extends StatelessWidget {
-  const LeftSideBar({Key? key}) : super(key: key);
+  const LeftSideBar({Key? key, required this.userName}) : super(key: key);
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        PhotoWidget(),
+      children: [
+        PhotoWidget(
+          userName: userName,
+        ),
         //ResumeWidget(),
       ],
     );
@@ -26,7 +29,8 @@ class LeftSideBar extends StatelessWidget {
 }
 
 class ResumeWidget extends StatelessWidget {
-  const ResumeWidget({Key? key}) : super(key: key);
+  const ResumeWidget({Key? key, required this.userName}) : super(key: key);
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +88,8 @@ class ResumeWidget extends StatelessWidget {
 }
 
 class PhotoWidget extends StatelessWidget {
-  const PhotoWidget({Key? key}) : super(key: key);
+  const PhotoWidget({Key? key, required this.userName}) : super(key: key);
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +107,7 @@ class PhotoWidget extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              S.of(context).maryJane,
+              userName,
               style: AppStyles.s18w500,
             ),
             const SizedBox(height: 6),

@@ -231,7 +231,6 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                 ),
               ),
               onPressed: () {
-                print(firstName.text);
                 context.read<ProfileBloc>().add(
                       UpdateInfoProfile(
                         profile: Profile(

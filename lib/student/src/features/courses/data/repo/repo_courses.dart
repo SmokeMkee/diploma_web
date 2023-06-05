@@ -12,9 +12,7 @@ class RepoCourses {
     final result = await api.dio.get('/students/get-student-courses',queryParameters: {
       "courseId" : 1
     });
-    print(result);
     List<Courses> listCourse = coursesFromJson(json.encode(result.data));
-    print(listCourse);
     return listCourse;
   }
 

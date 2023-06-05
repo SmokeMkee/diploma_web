@@ -1,4 +1,3 @@
-
 import 'package:diploma_web/student/src/features/init/dependencies_provider/dependencies_provider.dart';
 import 'package:diploma_web/student/src/features/localization/generated/l10n.dart';
 import 'package:diploma_web/student/src/features/localization/i_locale_repo.dart';
@@ -12,22 +11,21 @@ final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
-
   return runApp(
     DependenciesProvider(
       builder: (context) {
         return InheritedProvider<AppRouter>(
-          create: (context) =>  AppRouter(
-           GlobalKey<NavigatorState>(),
+          create: (context) => AppRouter(
+            GlobalKey<NavigatorState>(),
           ),
           child: ValueListenableBuilder<Locale>(
             valueListenable: context.read<ILocaleRepo>().locale,
             builder: (context, locale, _) {
               return MaterialApp.router(
                 scaffoldMessengerKey: scaffoldMessengerKey,
-
                 routerDelegate: context.read<AppRouter>().delegate(),
-                routeInformationParser: context.read<AppRouter>().defaultRouteParser(),
+                routeInformationParser:
+                    context.read<AppRouter>().defaultRouteParser(),
                 title: 'SimpleEducation',
                 localizationsDelegates: const [
                   S.delegate,
@@ -38,7 +36,6 @@ void main() {
                 debugShowCheckedModeBanner: false,
                 locale: locale,
                 supportedLocales: S.delegate.supportedLocales,
-
               );
             },
           ),

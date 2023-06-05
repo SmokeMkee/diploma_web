@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dio/dio.dart';
-import 'package:diploma_web/api/api.dart';
 import 'package:diploma_web/student/src/features/auth/data/repo/repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+import 'dart:html';
 part 'auth_event.dart';
 
 part 'auth_state.dart';
@@ -33,7 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if(response.userType == 'teacher'){
         emit(AuthError(message: 'неверный пароль или email'));
       }else{
-        storage.write(key: 'token', value: response.token);
+        window.localStorage['token'] =  response.token!;
         emit(AuthSuccessLogIn());
       }
     } catch (e) {

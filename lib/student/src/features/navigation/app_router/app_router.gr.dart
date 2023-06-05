@@ -62,12 +62,6 @@ class _$AppRouter extends RootStackRouter {
         child: const EmptyRouterPage(),
       );
     },
-    SavedRouter.name: (routeData) {
-      return AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const EmptyRouterPage(),
-      );
-    },
     SettingsRouter.name: (routeData) {
       return AdaptivePage<dynamic>(
         routeData: routeData,
@@ -93,15 +87,27 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     CoursesDetailedRoute.name: (routeData) {
+      final args = routeData.argsAs<CoursesDetailedRouteArgs>();
       return AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const CoursesDetailed(),
+        child: CoursesDetailed(
+          key: args.key,
+          courseId: args.courseId,
+          courseName: args.courseName,
+        ),
       );
     },
     CoursesDetailedLessonRoute.name: (routeData) {
+      final args = routeData.argsAs<CoursesDetailedLessonRouteArgs>();
       return AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const CoursesDetailedLesson(),
+        child: CoursesDetailedLesson(
+          key: args.key,
+          unitSectionName: args.unitSectionName,
+          courseName: args.courseName,
+          unitId: args.unitId,
+          courseId: args.courseId,
+        ),
       );
     },
     AssignmentsScreenRoute.name: (routeData) {
@@ -117,21 +123,21 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     GradeBookDetailedRoute.name: (routeData) {
+      final args = routeData.argsAs<GradeBookDetailedRouteArgs>();
       return AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const GradeBookDetailed(),
+        child: GradeBookDetailed(
+          key: args.key,
+          courseId: args.courseId,
+          teacherName: args.teacherName,
+          courseName: args.courseName,
+        ),
       );
     },
     ScheduleScreenRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
         routeData: routeData,
         child: const ScheduleScreen(),
-      );
-    },
-    SavedScreenRoute.name: (routeData) {
-      return AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const SavedScreen(),
       );
     },
     SettingsScreenRoute.name: (routeData) {
@@ -234,18 +240,6 @@ class _$AppRouter extends RootStackRouter {
                   ScheduleScreenRoute.name,
                   path: '',
                   parent: ScheduleRouter.name,
-                )
-              ],
-            ),
-            RouteConfig(
-              SavedRouter.name,
-              path: 'empty-router-page',
-              parent: PrimaryScreenRoute.name,
-              children: [
-                RouteConfig(
-                  SavedScreenRoute.name,
-                  path: '',
-                  parent: SavedRouter.name,
                 )
               ],
             ),
@@ -358,19 +352,6 @@ class ScheduleRouter extends PageRouteInfo<void> {
 
 /// generated route for
 /// [EmptyRouterPage]
-class SavedRouter extends PageRouteInfo<void> {
-  const SavedRouter({List<PageRouteInfo>? children})
-      : super(
-          SavedRouter.name,
-          path: 'empty-router-page',
-          initialChildren: children,
-        );
-
-  static const String name = 'SavedRouter';
-}
-
-/// generated route for
-/// [EmptyRouterPage]
 class SettingsRouter extends PageRouteInfo<void> {
   const SettingsRouter({List<PageRouteInfo>? children})
       : super(
@@ -420,26 +401,91 @@ class CoursesScreenRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CoursesDetailed]
-class CoursesDetailedRoute extends PageRouteInfo<void> {
-  const CoursesDetailedRoute()
-      : super(
+class CoursesDetailedRoute extends PageRouteInfo<CoursesDetailedRouteArgs> {
+  CoursesDetailedRoute({
+    Key? key,
+    required int courseId,
+    required String courseName,
+  }) : super(
           CoursesDetailedRoute.name,
           path: 'courses-detailed',
+          args: CoursesDetailedRouteArgs(
+            key: key,
+            courseId: courseId,
+            courseName: courseName,
+          ),
         );
 
   static const String name = 'CoursesDetailedRoute';
 }
 
+class CoursesDetailedRouteArgs {
+  const CoursesDetailedRouteArgs({
+    this.key,
+    required this.courseId,
+    required this.courseName,
+  });
+
+  final Key? key;
+
+  final int courseId;
+
+  final String courseName;
+
+  @override
+  String toString() {
+    return 'CoursesDetailedRouteArgs{key: $key, courseId: $courseId, courseName: $courseName}';
+  }
+}
+
 /// generated route for
 /// [CoursesDetailedLesson]
-class CoursesDetailedLessonRoute extends PageRouteInfo<void> {
-  const CoursesDetailedLessonRoute()
-      : super(
+class CoursesDetailedLessonRoute
+    extends PageRouteInfo<CoursesDetailedLessonRouteArgs> {
+  CoursesDetailedLessonRoute({
+    Key? key,
+    required String unitSectionName,
+    required String courseName,
+    required int unitId,
+    required int courseId,
+  }) : super(
           CoursesDetailedLessonRoute.name,
           path: 'courses-detailed-lesson',
+          args: CoursesDetailedLessonRouteArgs(
+            key: key,
+            unitSectionName: unitSectionName,
+            courseName: courseName,
+            unitId: unitId,
+            courseId: courseId,
+          ),
         );
 
   static const String name = 'CoursesDetailedLessonRoute';
+}
+
+class CoursesDetailedLessonRouteArgs {
+  const CoursesDetailedLessonRouteArgs({
+    this.key,
+    required this.unitSectionName,
+    required this.courseName,
+    required this.unitId,
+    required this.courseId,
+  });
+
+  final Key? key;
+
+  final String unitSectionName;
+
+  final String courseName;
+
+  final int unitId;
+
+  final int courseId;
+
+  @override
+  String toString() {
+    return 'CoursesDetailedLessonRouteArgs{key: $key, unitSectionName: $unitSectionName, courseName: $courseName, unitId: $unitId, courseId: $courseId}';
+  }
 }
 
 /// generated route for
@@ -468,14 +514,46 @@ class GradeBookScreenRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [GradeBookDetailed]
-class GradeBookDetailedRoute extends PageRouteInfo<void> {
-  const GradeBookDetailedRoute()
-      : super(
+class GradeBookDetailedRoute extends PageRouteInfo<GradeBookDetailedRouteArgs> {
+  GradeBookDetailedRoute({
+    Key? key,
+    required int courseId,
+    required String teacherName,
+    required String courseName,
+  }) : super(
           GradeBookDetailedRoute.name,
           path: 'grade-book-detailed',
+          args: GradeBookDetailedRouteArgs(
+            key: key,
+            courseId: courseId,
+            teacherName: teacherName,
+            courseName: courseName,
+          ),
         );
 
   static const String name = 'GradeBookDetailedRoute';
+}
+
+class GradeBookDetailedRouteArgs {
+  const GradeBookDetailedRouteArgs({
+    this.key,
+    required this.courseId,
+    required this.teacherName,
+    required this.courseName,
+  });
+
+  final Key? key;
+
+  final int courseId;
+
+  final String teacherName;
+
+  final String courseName;
+
+  @override
+  String toString() {
+    return 'GradeBookDetailedRouteArgs{key: $key, courseId: $courseId, teacherName: $teacherName, courseName: $courseName}';
+  }
 }
 
 /// generated route for
@@ -488,18 +566,6 @@ class ScheduleScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ScheduleScreenRoute';
-}
-
-/// generated route for
-/// [SavedScreen]
-class SavedScreenRoute extends PageRouteInfo<void> {
-  const SavedScreenRoute()
-      : super(
-          SavedScreenRoute.name,
-          path: '',
-        );
-
-  static const String name = 'SavedScreenRoute';
 }
 
 /// generated route for

@@ -1,0 +1,33 @@
+import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../dto/dto_assignments.dart';
+import '../repo/repo_assignment.dart';
+
+part 'assignments_event.dart';
+
+part 'assignments_state.dart';
+
+class AssignmentsBloc extends Bloc<AssignmentsEvent, AssignmentsState> {
+  final RepoAssignment repo;
+
+  AssignmentsBloc({required this.repo}) : super(AssignmentsInitial()) {
+    on<FetchAssignmentsEvent>(
+      (event, emit) async {
+        emit(AssignmentsLoading());
+        try {
+          print(1);
+          final response = await repo.fetch();
+          print(2);
+          emit(AssignmentsData(listAssignments: response));
+        } catch (e) {
+          if(e is DioError){
+            print(e.error);
+          }
+          print(e);
+          emit(AssignmentsError(message: 'fetch assignments list error '));
+        }
+      },
+    );
+  }
+}

@@ -8,10 +8,15 @@ import '../../../../constants/app_colors.dart';
 import '../localization/generated/l10n.dart';
 
 class Navigation extends StatelessWidget {
-  const Navigation({Key? key, required this.switchTo, required this.current,}) : super(key: key);
+  const Navigation({
+    Key? key,
+    required this.switchTo,
+    required this.current,
+  }) : super(key: key);
 
   final void Function(int) switchTo;
   final int current;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -30,7 +35,8 @@ class Navigation extends StatelessWidget {
               ),
             ),
             NavigationRailDestination(
-              label: NavBarLabel(isActive: current == 1, label: S.of(context).courses),
+              label: NavBarLabel(
+                  isActive: current == 1, label: S.of(context).courses),
               icon: _NavBarSvg(
                 isActive: current == 1,
                 activeIconPath: AppAssets.svg.coursesBold,
@@ -38,7 +44,8 @@ class Navigation extends StatelessWidget {
               ),
             ),
             NavigationRailDestination(
-              label: NavBarLabel(isActive: current == 2, label: S.of(context).assignments),
+              label: NavBarLabel(
+                  isActive: current == 2, label: S.of(context).assignments),
               icon: _NavBarSvg(
                 isActive: current == 2,
                 activeIconPath: AppAssets.svg.assignmentsBold,
@@ -46,33 +53,35 @@ class Navigation extends StatelessWidget {
               ),
             ),
             NavigationRailDestination(
-              label: NavBarLabel(isActive: current == 3, label: S.of(context).gradeBook),
+              label: NavBarLabel(
+                  isActive: current == 3, label: S.of(context).gradeBook),
               icon: _NavBarSvg(
                 isActive: current == 3,
                 activeIconPath: AppAssets.svg.gradeBookBold,
                 inactiveIconPath: AppAssets.svg.gradeBook,
               ),
             ),
+            // NavigationRailDestination(
+            //   label: NavBarLabel(isActive: current == 4, label: S.of(context).schedule),
+            //   icon: _NavBarSvg(
+            //     isActive: current == 4,
+            //     activeIconPath: AppAssets.svg.scheduleBold,
+            //     inactiveIconPath: AppAssets.svg.schedule,
+            //   ),
+            // ),
+            // NavigationRailDestination(
+            //   label: NavBarLabel(isActive: current == 4, label: S.of(context).saved),
+            //   icon: _NavBarSvg(
+            //     isActive: current == 4,
+            //     activeIconPath: AppAssets.svg.savedBold,
+            //     inactiveIconPath: AppAssets.svg.saved,
+            //   ),
+            // ),
             NavigationRailDestination(
-              label: NavBarLabel(isActive: current == 4, label: S.of(context).schedule),
+              label: NavBarLabel(
+                  isActive: current == 4, label: S.of(context).settings),
               icon: _NavBarSvg(
                 isActive: current == 4,
-                activeIconPath: AppAssets.svg.scheduleBold,
-                inactiveIconPath: AppAssets.svg.schedule,
-              ),
-            ),
-            NavigationRailDestination(
-              label: NavBarLabel(isActive: current == 5, label: S.of(context).saved),
-              icon: _NavBarSvg(
-                isActive: current == 5,
-                activeIconPath: AppAssets.svg.savedBold,
-                inactiveIconPath: AppAssets.svg.saved,
-              ),
-            ),
-            NavigationRailDestination(
-              label: NavBarLabel(isActive: current == 6, label: S.of(context).settings),
-              icon: _NavBarSvg(
-                isActive: current == 6,
                 activeIconPath: AppAssets.svg.settingsBold,
                 inactiveIconPath: AppAssets.svg.settings,
               ),
@@ -87,7 +96,9 @@ class Navigation extends StatelessWidget {
 }
 
 class NavBarProfileLabel extends StatelessWidget {
-  const NavBarProfileLabel({Key? key, required this.isActive, required this.label}) : super(key: key);
+  const NavBarProfileLabel(
+      {Key? key, required this.isActive, required this.label})
+      : super(key: key);
   final bool isActive;
   final String label;
 
@@ -126,7 +137,8 @@ class NavBarProfileIcon extends StatelessWidget {
 }
 
 class NavBarLabel extends StatelessWidget {
-  const NavBarLabel({Key? key, required this.isActive, required this.label}) : super(key: key);
+  const NavBarLabel({Key? key, required this.isActive, required this.label})
+      : super(key: key);
   final bool isActive;
   final String label;
 

@@ -13,8 +13,19 @@ import '../../navigation/app_router/app_router.dart';
 import '../../profile/ui/profile_screen.dart';
 import '../data/bloc/courses_bloc.dart';
 
-class CoursesScreen extends StatelessWidget {
+class CoursesScreen extends StatefulWidget {
   const CoursesScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CoursesScreen> createState() => _CoursesScreenState();
+}
+
+class _CoursesScreenState extends State<CoursesScreen> {
+  @override
+  void didChangeDependencies() {
+    context.read<CoursesBloc>().add(FetchCoursesEvent());
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,47 +49,84 @@ class CoursesScreen extends StatelessWidget {
                 children: [
                   const SearchWidget(),
                   const SizedBox(height: 53),
-                  Text(
-                    S.of(context).allCourses,
-                    style: AppStyles.s15w500.copyWith(color: AppColors.accent),
-                  ),
-                  const SizedBox(height: 8),
-                  const Divider(
-                    height: 4,
-                    thickness: 2,
-                    color: AppColors.gray200,
-                  ),
+                  // Text(
+                  //   S.of(context).allCourses,
+                  //   style: AppStyles.s15w500.copyWith(color: AppColors.accent),
+                  // ),
+                  // const SizedBox(height: 8),
+                  // const Divider(
+                  //   height: 4,
+                  //   thickness: 2,
+                  //   color: AppColors.gray200,
+                  // ),
                   const SizedBox(height: 40),
                   BlocBuilder<CoursesBloc, CoursesState>(
                     builder: (context, state) {
                       if (state is CoursesData) {
-                        return Expanded(
-                          child: GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4,
-                              crossAxisSpacing: 21,
-                              mainAxisSpacing: 35,
-                            ),
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                onTap: () => context.router
-                                    .navigate(const CoursesDetailedRoute()),
-                                child: CourseCard(
-                                  courses: state.listCourses[index],
+                        return state.listCourses.isEmpty
+                            ? Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset('assets/images/img.png'),
+                                    SizedBox(height: 35),
+                                    const Text(
+                                      'You don’t have any courses yet',
+                                      style: AppStyles.s20w600,
+                                    )
+                                  ],
+                                ),
+                              )
+                            : Expanded(
+                                child: GridView.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    crossAxisSpacing: 21,
+                                    mainAxisSpacing: 35,
+                                  ),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                      onTap: () => context.router.navigate(
+                                        CoursesDetailedRoute(
+                                          courseId: state.listCourses[index]
+                                                  .courseId ??
+                                              0,
+                                          courseName: state.listCourses[index]
+                                                  .courseName ??
+                                              'no info',
+                                        ),
+                                      ),
+                                      child: CourseCard(
+                                        courses: state.listCourses[index],
+                                      ),
+                                    );
+                                  },
+                                  itemCount: state.listCourses.length,
                                 ),
                               );
-                            },
-                            itemCount: state.listCourses.length,
-                          ),
-                        );
                       }
                       if (state is CoursesLoading) {
                         return const Center(
                           child: CircularProgressIndicator(),
                         );
                       }
-                      return const SizedBox.shrink();
+                      return Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/img.png'),
+                            const SizedBox(height: 35),
+                            const Text(
+                              'You don’t have any courses yet',
+                              style: AppStyles.s20w600,
+                            )
+                          ],
+                        ),
+                      );
                     },
                   )
                 ],

@@ -1,18 +1,35 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:diploma_web/constants/app_styles.dart';
+import 'package:diploma_web/student/src/features/courses/courses_detailed_lesson/ui/widgets/assignments_material.dart';
+import 'package:diploma_web/student/src/features/courses/courses_detailed_lesson/ui/widgets/image_material.dart';
+import 'package:diploma_web/student/src/features/courses/courses_detailed_lesson/ui/widgets/open_question_material.dart';
+import 'package:diploma_web/student/src/features/courses/courses_detailed_lesson/ui/widgets/pdf_and_other_materials.dart';
+import 'package:diploma_web/student/src/features/courses/courses_detailed_lesson/ui/widgets/text_material.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../constants/app_assets.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/app_divider.dart';
-import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../profile/ui/profile_screen.dart';
+import '../data/bloc/unit_material_bloc.dart';
+import '../data/bloc_material/section_material_bloc.dart';
 
 class CoursesDetailedLesson extends StatelessWidget {
-  const CoursesDetailedLesson({Key? key}) : super(key: key);
+  const CoursesDetailedLesson(
+      {Key? key,
+      required this.unitSectionName,
+      required this.courseName,
+      required this.unitId,
+      required this.courseId})
+      : super(key: key);
+  final String unitSectionName;
+  final String courseName;
+  final int unitId;
+  final int courseId;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +39,7 @@ class CoursesDetailedLesson extends StatelessWidget {
         appBar: PreferredSize(
           preferredSize: const Size(double.infinity, 200),
           child: HeaderWidget(
-            title: S.of(context).coursesGeneralEnglishWeek1,
+            title: 'Courses>$courseName>$unitSectionName',
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -31,10 +48,14 @@ class CoursesDetailedLesson extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              CoursesMainContent(),
-              SizedBox(width: 75),
-              CoursesLeftSideBar(),
+            children: [
+              const CoursesMainContent(),
+              const SizedBox(width: 75),
+              CoursesLeftSideBar(
+                unitName: unitSectionName,
+                unitId: unitId,
+                courseId: courseId,
+              ),
             ],
           ),
         ),
@@ -53,47 +74,81 @@ class CoursesMainContent extends StatelessWidget {
       child: SingleChildScrollView(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const ContentHeader(),
-                const SizedBox(height: 15),
-                AppDivider(
-                  width: constraints.maxWidth,
-                ),
-                const SizedBox(height: 33),
-                const LectureInfoContainer(),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        onPressed: () {},
-                        label: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          child: Text(
-                            S.of(context).downloadPdf,
-                            style: AppStyles.s15w500.copyWith(color: AppColors.white),
-                          ),
-                        ),
-                        icon: SvgPicture.asset(
-                          AppAssets.svg.downloadBold,
-                          color: AppColors.white,
-                        ),
+            return BlocBuilder<SectionMaterialBloc, SectionMaterialState>(
+              builder: (context, state) {
+                if (state is SectionMaterialLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (state is SectionMaterialError) {
+                  return Text(state.message);
+                }
+                if (state is SectionMaterialData) {
+                  return Column(
+                    children: [
+                      ContentHeader(
+                        sectionName: state.sectionName,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 50),
-                AppDivider(
-                  width: constraints.maxWidth,
-                ),
-              ],
+                      const SizedBox(height: 15),
+                      AppDivider(
+                        width: constraints.maxWidth,
+                      ),
+                      const SizedBox(height: 33),
+                      ListView.builder(
+                        itemCount: state.listMaterial.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, int index) {
+                          Widget? widget;
+                          var type = state.listMaterial[index].flagCreationInfo;
+                          switch (type) {
+                            case 'Picture':
+                              widget = ImageMaterial(
+                                image: state.listMaterial[index].fileData ?? '',
+                              );
+                              break;
+                            case 'Pdf and other materials':
+                              widget = PdfAndOtherMaterials(
+                                  file: state.listMaterial[index].fileData ??
+                                      '');
+                              break;
+                            case 'Open questions':
+                              widget = OpenQuestionMaterial(
+                                  question:
+                                      state.listMaterial[index].question ??
+                                          '');
+                              break;
+                            case 'Text':
+                              widget = TextMaterial(
+                                articleHeading:
+                                    state.listMaterial[index].articleHeading,
+                                textMarker:
+                                    state.listMaterial[index].textMarker,
+                                articleText:
+                                    state.listMaterial[index].articleText,
+                              );
+                              break;
+                            case 'Dividing line':
+                              widget =  AppDivider(width:constraints.maxWidth ,margin: EdgeInsets.symmetric(vertical: 20),);
+                              break;
+                          }
+                          return widget ?? const SizedBox.shrink();
+                        },
+                      ),
+                      if (state.assignmentMaterial != null)
+                        AssignmentMaterial(
+                          articleHeading:
+                              state.assignmentMaterial!.heading ?? '',
+                          dueDate: state.assignmentMaterial!.endDate ?? '',
+                          instructions:
+                              state.assignmentMaterial!.instructions ?? '',
+                          material: state.assignmentMaterial!.material ?? '',
+                        )
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             );
           },
         ),
@@ -138,7 +193,8 @@ class _LectureInfoContainerState extends State<LectureInfoContainer> {
             imagePath: [
               ...List.generate(
                 10,
-                (index) => 'https://www.gannett-cdn.com/presto/2021/03/22/NRCD/9d9dd9e4-e84a'
+                (index) =>
+                    'https://www.gannett-cdn.com/presto/2021/03/22/NRCD/9d9dd9e4-e84a'
                     '-402e-ba8f-daa659e6e6c5-PhotoWord_003'
                     '.JPG?width=1320&height=850&fit=crop&format=pjpg&auto=webp',
               ),
@@ -155,7 +211,9 @@ class _LectureInfoContainerState extends State<LectureInfoContainer> {
             children: [
               GestureDetector(
                 onTap: () {
-                  pageController.previousPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
+                  pageController.previousPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeIn);
                 },
                 child: SvgPicture.asset(AppAssets.svg.arrowLeft2),
               ),
@@ -165,7 +223,9 @@ class _LectureInfoContainerState extends State<LectureInfoContainer> {
               ),
               GestureDetector(
                 onTap: () {
-                  pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
+                  pageController.nextPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeIn);
                 },
                 child: SvgPicture.asset(AppAssets.svg.arrowRight2),
               ),
@@ -179,7 +239,11 @@ class _LectureInfoContainerState extends State<LectureInfoContainer> {
 }
 
 class LessonPageBuilder extends StatelessWidget {
-  const LessonPageBuilder({Key? key, required this.controller, required this.imagePath, required this.valueChanged})
+  const LessonPageBuilder(
+      {Key? key,
+      required this.controller,
+      required this.imagePath,
+      required this.valueChanged})
       : super(key: key);
   final PageController controller;
   final List<String> imagePath;
@@ -209,7 +273,8 @@ class LessonPageBuilder extends StatelessWidget {
 }
 
 class ContentHeader extends StatelessWidget {
-  const ContentHeader({Key? key}) : super(key: key);
+  const ContentHeader({Key? key, required this.sectionName}) : super(key: key);
+  final String sectionName;
 
   @override
   Widget build(BuildContext context) {
@@ -219,30 +284,47 @@ class ContentHeader extends StatelessWidget {
       children: [
         AppBackButton(
           onTap: () {
-            context.router.popAndPush(const CoursesDetailedRoute());
+            context.popRoute();
           },
         ),
         const SizedBox(width: 34),
-        const Text(
-          'PRESENT PERFECT',
+        Text(
+          sectionName,
           style: AppStyles.s18w500,
         ),
         const Spacer(),
-        CircleAvatar(
-          backgroundColor: AppColors.gray200.withOpacity(0.2),
-          radius: 25,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: SvgPicture.asset(AppAssets.svg.saved),
-          ),
-        )
       ],
     );
   }
 }
 
-class CoursesLeftSideBar extends StatelessWidget {
-  const CoursesLeftSideBar({Key? key}) : super(key: key);
+class CoursesLeftSideBar extends StatefulWidget {
+  const CoursesLeftSideBar(
+      {Key? key,
+      required this.unitName,
+      required this.unitId,
+      required this.courseId})
+      : super(key: key);
+  final String unitName;
+  final int unitId;
+  final int courseId;
+
+  @override
+  State<CoursesLeftSideBar> createState() => _CoursesLeftSideBarState();
+}
+
+class _CoursesLeftSideBarState extends State<CoursesLeftSideBar> {
+  @override
+  void initState() {
+    context.read<UnitMaterialBloc>().add(
+          FetchSectionUnitMaterialEvent(
+              unitId: widget.unitId, courseId: widget.courseId),
+        );
+
+    super.initState();
+  }
+
+  int selectedTab = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -284,21 +366,20 @@ class CoursesLeftSideBar extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(vertical: 2.5, horizontal: 10),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 2.5,
+                            horizontal: 10,
+                          ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: AppColors.subtitleBg,
                           ),
                           child: Text(
-                            'Lecture',
-                            style: AppStyles.s14w500.copyWith(color: AppColors.subtitle),
+                            widget.unitName,
+                            style: AppStyles.s14w500
+                                .copyWith(color: AppColors.subtitle),
                           ),
                         ),
-                        const SizedBox(height: 9),
-                        const Text(
-                          'Week 1',
-                          style: AppStyles.s20w600,
-                        )
                       ],
                     )
                   ],
@@ -308,13 +389,62 @@ class CoursesLeftSideBar extends StatelessWidget {
                   width: constraints.maxWidth,
                 ),
                 const SizedBox(height: 25),
-                Column(
-                  children: [
-                    LeftSideBarTabsTile(title: S.of(context).lecture, selected: true,),
-                    LeftSideBarTabsTile(title: S.of(context).classWork, selected: false,),
-                    LeftSideBarTabsTile(title: S.of(context).homeWork, selected: false,),
-                    LeftSideBarTabsTile(title: S.of(context).quiz1, selected: false,),
-                  ],
+                BlocConsumer<UnitMaterialBloc, UnitMaterialState>(
+                  listener: (context, state) {
+                    if (state is UnitMaterialData) {
+                      context.read<SectionMaterialBloc>().add(
+                            FetchSectionMaterialEvent(
+                              unitId: widget.unitId,
+                              courseId: widget.courseId,
+                              sectionId: state.tabs.first.id ?? 0,
+                              sectionName:
+                                  state.tabs.first.sectionName ?? 'no info',
+                            ),
+                          );
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is UnitMaterialData) {
+                      return Column(
+                        children: [
+                          ...List.generate(
+                            state.tabs.length,
+                            (index) => GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedTab = index;
+                                });
+                                context.read<SectionMaterialBloc>().add(
+                                      FetchSectionMaterialEvent(
+                                        unitId: widget.unitId,
+                                        courseId: widget.courseId,
+                                        sectionId: state.tabs[index].id ?? 0,
+                                        sectionName:
+                                            state.tabs[index].sectionName ??
+                                                'no info',
+                                      ),
+                                    );
+                              },
+                              child: LeftSideBarTabsTile(
+                                title:
+                                    state.tabs[index].sectionName ?? 'no info',
+                                selected: selectedTab == index,
+                              ),
+                            ),
+                          )
+                        ],
+                      );
+                    }
+                    if (state is UnitMaterialError) {
+                      return Text(state.message);
+                    }
+                    if (state is UnitMaterialLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
                 )
               ],
             );
@@ -326,7 +456,9 @@ class CoursesLeftSideBar extends StatelessWidget {
 }
 
 class LeftSideBarTabsTile extends StatelessWidget {
-  const LeftSideBarTabsTile({Key? key, required this.title, required this.selected}) : super(key: key);
+  const LeftSideBarTabsTile(
+      {Key? key, required this.title, required this.selected})
+      : super(key: key);
   final String title;
   final bool selected;
 
@@ -337,13 +469,14 @@ class LeftSideBarTabsTile extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            radius:selected ?  6 : 4,
+            radius: selected ? 6 : 4,
             backgroundColor: selected ? AppColors.accent : AppColors.gray600,
           ),
           const SizedBox(width: 12),
           Text(
             title,
-            style: AppStyles.s15w500.copyWith(color: selected ? AppColors.accent : AppColors.gray600),
+            style: AppStyles.s15w500.copyWith(
+                color: selected ? AppColors.accent : AppColors.gray600),
           )
         ],
       ),

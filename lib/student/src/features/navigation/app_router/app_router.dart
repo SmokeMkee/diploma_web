@@ -77,13 +77,6 @@ part 'app_router.gr.dart';
         ),
         AutoRoute(
           page: EmptyRouterPage,
-          name: 'SavedRouter',
-          children: [
-            AutoRoute(page: SavedScreen, initial: true),
-          ],
-        ),
-        AutoRoute(
-          page: EmptyRouterPage,
           name: 'SettingsRouter',
           children: [
             AutoRoute(page: SettingsScreen, initial: true),
