@@ -5,8 +5,6 @@ import 'package:diploma_web/student/src/features/gradebook/gradebook_detailed/da
 import 'package:diploma_web/student/src/features/gradebook/gradebook_detailed/data/repo/repo_gradebook_detailed.dart';
 import 'package:diploma_web/student/src/features/profile/data/bloc/profile_bloc.dart';
 import 'package:diploma_web/student/src/features/profile/data/repo/repo_profile.dart';
-import 'package:diploma_web/student/src/features/schedule/ui/data/bloc/schedule_bloc.dart';
-import 'package:diploma_web/student/src/features/schedule/ui/data/repo/repo_schedule.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,6 +16,8 @@ import '../../../courses/courses_detailed/data/repo/repo_courses.dart';
 import '../../../courses/courses_detailed_lesson/data/bloc/unit_material_bloc.dart';
 import '../../../courses/courses_detailed_lesson/data/bloc_material/section_material_bloc.dart';
 import '../../../courses/courses_detailed_lesson/data/repo/repo_unit_material.dart';
+import '../../../schedule/data/bloc/schedule_bloc.dart';
+import '../../../schedule/data/repo/repo_schedule.dart';
 
 class BlocsProvider extends StatelessWidget {
   const BlocsProvider({super.key, required this.child});

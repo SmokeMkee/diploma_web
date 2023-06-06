@@ -11,14 +11,16 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
   final RepoSchedule repo;
 
   ScheduleBloc({required this.repo}) : super(ScheduleInitial()) {
-    on<FetchScheduleEvent>((event, emit) async {
-      emit(ScheduleLoading());
-      try {
-        final response = await repo.fetch();
-        emit(ScheduleData(listSchedule: response));
-      } catch (e) {
-        emit(ScheduleError(message: 'error fetch schedule'));
-      }
-    });
+    on<FetchScheduleEvent>(
+      (event, emit) async {
+        emit(ScheduleLoading());
+        try {
+          final response = await repo.fetch(event.day);
+          emit(ScheduleData(listSchedule: response));
+        } catch (e) {
+          emit(ScheduleError(message: 'fetch schedule list error'));
+        }
+      },
+    );
   }
 }

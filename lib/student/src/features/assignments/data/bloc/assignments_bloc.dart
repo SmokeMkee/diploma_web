@@ -16,9 +16,8 @@ class AssignmentsBloc extends Bloc<AssignmentsEvent, AssignmentsState> {
       (event, emit) async {
         emit(AssignmentsLoading());
         try {
-          print(1);
           final response = await repo.fetch();
-          print(2);
+
           emit(AssignmentsData(listAssignments: response));
         } catch (e) {
           if(e is DioError){

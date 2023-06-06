@@ -89,17 +89,7 @@ class HeaderWidget extends StatelessWidget {
             style: AppStyles.s20w600,
           ),
         ),
-        CircleAvatar(
-          radius: 27,
-          backgroundColor: AppColors.gray200.withOpacity(0.2),
-          child: SvgPicture.asset(
-            AppAssets.svg.notification,
-            color: AppColors.primary,
-          ),
-        ),
-        const SizedBox(width: 27),
-        if (withDisabilities == null || withDisabilities == true)
-          const DisabilitiesButton(),
+
       ],
     );
   }
