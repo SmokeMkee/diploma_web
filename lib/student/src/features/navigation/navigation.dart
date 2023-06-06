@@ -61,14 +61,14 @@ class Navigation extends StatelessWidget {
                 inactiveIconPath: AppAssets.svg.gradeBook,
               ),
             ),
-            // NavigationRailDestination(
-            //   label: NavBarLabel(isActive: current == 4, label: S.of(context).schedule),
-            //   icon: _NavBarSvg(
-            //     isActive: current == 4,
-            //     activeIconPath: AppAssets.svg.scheduleBold,
-            //     inactiveIconPath: AppAssets.svg.schedule,
-            //   ),
-            // ),
+            NavigationRailDestination(
+              label: NavBarLabel(isActive: current == 4, label: S.of(context).schedule),
+              icon: _NavBarSvg(
+                isActive: current == 4,
+                activeIconPath: AppAssets.svg.scheduleBold,
+                inactiveIconPath: AppAssets.svg.schedule,
+              ),
+            ),
             // NavigationRailDestination(
             //   label: NavBarLabel(isActive: current == 4, label: S.of(context).saved),
             //   icon: _NavBarSvg(
@@ -79,9 +79,9 @@ class Navigation extends StatelessWidget {
             // ),
             NavigationRailDestination(
               label: NavBarLabel(
-                  isActive: current == 4, label: S.of(context).settings),
+                  isActive: current == 5, label: S.of(context).settings),
               icon: _NavBarSvg(
-                isActive: current == 4,
+                isActive: current == 5,
                 activeIconPath: AppAssets.svg.settingsBold,
                 inactiveIconPath: AppAssets.svg.settings,
               ),

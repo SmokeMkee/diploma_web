@@ -11,9 +11,19 @@ import '../../localization/generated/l10n.dart';
 import '../../navigation/app_router/app_router.dart';
 import '../../profile/ui/profile_screen.dart';
 
-class GradeBookScreen extends StatelessWidget {
+class GradeBookScreen extends StatefulWidget {
   const GradeBookScreen({Key? key}) : super(key: key);
 
+  @override
+  State<GradeBookScreen> createState() => _GradeBookScreenState();
+}
+
+class _GradeBookScreenState extends State<GradeBookScreen> {
+  @override
+  void initState() {
+    context.read<CoursesBloc>().add(FetchCoursesEvent());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(

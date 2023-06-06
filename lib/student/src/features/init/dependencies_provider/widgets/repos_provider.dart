@@ -3,6 +3,7 @@ import 'package:diploma_web/student/src/features/courses/data/repo/repo_courses.
 import 'package:diploma_web/student/src/features/gradebook/gradebook_detailed/data/repo/repo_gradebook_detailed.dart';
 import 'package:diploma_web/student/src/features/localization/i_locale_repo.dart';
 import 'package:diploma_web/student/src/features/profile/data/repo/repo_profile.dart';
+import 'package:diploma_web/student/src/features/schedule/ui/data/repo/repo_schedule.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -60,6 +61,10 @@ class ReposProvider extends StatelessWidget {
         ),
         Provider(
           create: (context) => RepoUnitMaterial(
+            api: RepositoryProvider.of<Api>(context),
+          ),
+        ),Provider(
+          create: (context) => RepoSchedule(
             api: RepositoryProvider.of<Api>(context),
           ),
         ),

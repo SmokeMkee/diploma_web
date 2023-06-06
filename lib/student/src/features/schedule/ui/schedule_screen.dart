@@ -1,79 +1,45 @@
 import 'package:diploma_web/student/src/features/schedule/ui/widget/schedule_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../localization/generated/l10n.dart';
 import '../../profile/ui/profile_screen.dart';
+import 'data/bloc/schedule_bloc.dart';
 
-class ScheduleScreen extends StatelessWidget {
+class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ScheduleScreen> createState() => _ScheduleScreenState();
+}
+
+class _ScheduleScreenState extends State<ScheduleScreen> {
+  @override
+  void initState() {
+    context.read<ScheduleBloc>().add(FetchScheduleEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
-      child: DefaultTabController(
-        length: 7,
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size(double.infinity, 200),
-            child: HeaderWidget(
-              title: S.of(context).schedule,
-            ),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 200),
+          child: HeaderWidget(
+            title: S.of(context).schedule,
           ),
-          backgroundColor: Colors.transparent,
-          body: Column(
-            children: [
-              const SizedBox(height: 50),
-              TabBar(
-                unselectedLabelColor: AppColors.gray600,
-                indicatorWeight: 6,
-                indicatorSize: TabBarIndicatorSize.label,
-                indicatorColor: AppColors.accent,
-                labelColor: AppColors.accent,
-                labelStyle: AppStyles.s15w500.copyWith(color: AppColors.accent),
-                tabs: [
-                  Tab(
-                    text: S.of(context).monday,
-                  ),
-                  Tab(
-                    text: S.of(context).tuesday,
-                  ),
-                  Tab(
-                    text: S.of(context).wednesday,
-                  ),
-                  Tab(
-                    text: S.of(context).thursday,
-                  ),
-                  Tab(
-                    text: S.of(context).friday,
-                  ),
-                  Tab(
-                    text: S.of(context).saturday,
-                  ),
-                  Tab(
-                    text: S.of(context).sunday,
-                  ),
-                ],
-              ),
-              const Divider(),
-              const SizedBox(height: 44),
-              const Expanded(
-                child: TabBarView(
-                  children: [
-                    ScheduleBody(),
-                    ScheduleBody(),
-                    ScheduleBody(),
-                    ScheduleBody(),
-                    ScheduleBody(),
-                    ScheduleBody(),
-                    ScheduleBody(),
-                  ],
-                ),
-              )
-            ],
-          ),
+        ),
+        backgroundColor: Colors.transparent,
+        body: ListView(
+          children: const [
+            SizedBox(height: 50),
+            Expanded(child: ScheduleBody()),
+          ],
         ),
       ),
     );
@@ -85,43 +51,75 @@ class ScheduleBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const HeaderBody(),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            child: ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                if (index % 2 == 0) {
-                  return Row(
-                    children: [
-                      Text('${index + 7}:00'),
-                      const SizedBox(width: 30),
-                      const Expanded(child: ScheduleCard()),
-                    ],
-                  );
-                } else {
-                  return Row(
-                    children:  [
-                      Text('${index + 7}:00'),
-                      const SizedBox(width: 30),
-                     // const Divider(thickness: 13,height: 22, color: Colors.purple,),
-                    ],
-                  );
-                }
-              },
-              itemCount: 12,
+    return BlocBuilder<ScheduleBloc, ScheduleState>(builder: (context, state) {
+      if (state is ScheduleData) {
+        return Column(
+          children: [
+            ...List.generate(
+              2,
+              (index) => Column(
+                children: [
+                  HeaderBody(
+                    day: DateFormat('EEEE').format(
+                      DateTime.parse(
+                        state.listSchedule[0].lessonTime ??
+                            DateTime.now().toString(),
+                      ),
+                    ),
+                    fullDate: DateFormat('MMMM d, yyyy').format(
+                      DateTime.parse(
+                        state.listSchedule[0].lessonTime ??
+                            DateTime.now().toString(),
+                      ),
+                    ),
+                  ),
+                  ...List.generate(
+                    3,
+                    (index1) => ScheduleCard(
+                      courseName:
+                          state.listSchedule[0].courseName ?? 'no info',
+                      sectionName:
+                          state.listSchedule[0].courseName ?? 'no info',
+                      startDate: DateFormat('HH:mm').format(
+                        DateTime.parse(
+                          state.listSchedule[0].lessonTime ??
+                              DateTime.now().toString(),
+                        ),
+                      ),
+                      endDate: DateFormat('HH:mm').format(
+                        DateTime.parse(
+                          state.listSchedule[0].lessonDuration ??
+                              DateTime.now().toString(),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
-      ],
-    );
+          ],
+        );
+      }
+      if (state is ScheduleLoading) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+      if (state is ScheduleError) {
+        return Center(
+          child: Text(state.message),
+        );
+      }
+      return const SizedBox.shrink();
+    });
   }
 }
 
 class HeaderBody extends StatelessWidget {
-  const HeaderBody({Key? key}) : super(key: key);
+  const HeaderBody({Key? key, required this.day, required this.fullDate})
+      : super(key: key);
+  final String day;
+  final String fullDate;
 
   @override
   Widget build(BuildContext context) {
@@ -132,49 +130,18 @@ class HeaderBody extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Text(
-              S.of(context).april122023,
+            Text(
+              fullDate,
               style: AppStyles.s18w500,
             ),
             Text(
-              S.of(context).wednesday,
+              day,
               style: AppStyles.s15w400.copyWith(
                 color: AppColors.gray600,
               ),
             ),
           ],
         ),
-        Row(
-          children: [
-            Row(
-              children: [
-                const CircleAvatar(
-                  radius: 5,
-                  backgroundColor: AppColors.error,
-                ),
-                SizedBox(width: 9),
-                Text(
-                  S.of(context).absent,
-                  style: AppStyles.s15w500,
-                )
-              ],
-            ),
-            const SizedBox(width: 42),
-            Row(
-              children: [
-                const CircleAvatar(
-                  radius: 5,
-                  backgroundColor: AppColors.success,
-                ),
-                SizedBox(width: 9),
-                Text(
-                  S.of(context).present,
-                  style: AppStyles.s15w500,
-                )
-              ],
-            ),
-          ],
-        )
       ],
     );
   }

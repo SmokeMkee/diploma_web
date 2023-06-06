@@ -5,6 +5,8 @@ import 'package:diploma_web/student/src/features/gradebook/gradebook_detailed/da
 import 'package:diploma_web/student/src/features/gradebook/gradebook_detailed/data/repo/repo_gradebook_detailed.dart';
 import 'package:diploma_web/student/src/features/profile/data/bloc/profile_bloc.dart';
 import 'package:diploma_web/student/src/features/profile/data/repo/repo_profile.dart';
+import 'package:diploma_web/student/src/features/schedule/ui/data/bloc/schedule_bloc.dart';
+import 'package:diploma_web/student/src/features/schedule/ui/data/repo/repo_schedule.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,6 +63,11 @@ class BlocsProvider extends StatelessWidget {
         BlocProvider<SectionMaterialBloc>(
           create: (context) => SectionMaterialBloc(
             repo: RepositoryProvider.of<RepoUnitMaterial>(context),
+          ),
+        ),
+        BlocProvider<ScheduleBloc>(
+          create: (context) => ScheduleBloc(
+            repo: RepositoryProvider.of<RepoSchedule>(context),
           ),
         ),
         BlocProvider<UnitMaterialBloc>(

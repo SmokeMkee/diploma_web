@@ -40,9 +40,9 @@ class PrimaryScreen extends StatelessWidget {
                 GradeBookScreenRoute(),
               ],
             ),
-            // ScheduleRouter(
-            //   children: [ScheduleScreenRoute()],
-            // ),
+            ScheduleRouter(
+              children: [ScheduleScreenRoute()],
+            ),
             // SavedRouter(
             //   children: [SavedScreenRoute()],
             // ),
