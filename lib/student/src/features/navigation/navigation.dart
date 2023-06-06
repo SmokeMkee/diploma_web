@@ -1,11 +1,13 @@
 import 'package:diploma_web/constants/app_styles.dart';
 import 'package:diploma_web/student/src/features/navigation/widgets/log_out_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../constants/app_assets.dart';
 import '../../../../constants/app_colors.dart';
 import '../localization/generated/l10n.dart';
+import '../profile/data/bloc/profile_bloc.dart';
 
 class Navigation extends StatelessWidget {
   const Navigation({
@@ -31,7 +33,8 @@ class Navigation extends StatelessWidget {
               icon: const NavBarProfileIcon(),
               label: NavBarProfileLabel(
                 isActive: current == 0,
-                label: 'Mary J.',
+                label: '${context.watch<ProfileBloc>().prof?.name ?? 'no info'} '
+                    '${context.watch<ProfileBloc>().prof?.surname ?? 'no info'}',
               ),
             ),
             NavigationRailDestination(

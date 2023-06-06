@@ -14,7 +14,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<FetchInfoProfile>(fetchData);
     on<UpdateInfoProfile>(updateData);
   }
-
+  Profile? prof;
   Future<void> fetchData(
     FetchInfoProfile event,
     Emitter<ProfileState> emit,
@@ -22,6 +22,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try{
       emit(ProfileLoading());
       final response = await repo.fetch();
+      prof = response;
       emit(
         ProfileData(data: response),
       );
@@ -39,7 +40,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try{
       emit(ProfileLoading());
       final response = await repo.updateInfo(event.profile);
-
+      prof = response;
       emit(
         ProfileData(data: response),
       );
